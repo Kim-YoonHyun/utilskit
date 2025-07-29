@@ -2,3 +2,4 @@ build/
 *-info/
 test/
 __pycache__/
+dist/

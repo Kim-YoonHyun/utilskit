@@ -1,6 +1,0 @@
-[build-system]
-requires = ["setuptools", "wheel"]
-build-backend = "setuptools.build_meta"
-
-[tool.setuptools.packages.find]	# 제외 디렉토리 설정
-exclude = ["test"]

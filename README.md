@@ -1,3 +1,5 @@
+# 0.2.2
+- build 방식 변경
 # 0.2.1
 - repeatutila 에 get_section 함수 추가
 # 0.2.0 

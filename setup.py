@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="utilskit",  # 패키지 이름 (pip install 시 사용될 이름)
-    version="0.2.0",    # 버전
+    version="0.2.1",    # 버전
     packages=find_packages(),  # textbasic 폴더 내 모든 패키지 포함
     include_package_data=True,  # 이 설정을 통해 패키지 내 데이터 파일을 포함시킬 수 있음
     package_data={

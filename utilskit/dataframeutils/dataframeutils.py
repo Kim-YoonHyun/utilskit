@@ -131,25 +131,21 @@ def fill_repeat_nan(dataframe, column, repeat=5):
     stan_ary = df[column].values
 
     # NaN 가 반복되는 구간 산정
-    repeat_section = rpu.get_stan_repeat_section(
-        ary=stan_ary,
-        value='nan',
-        repeat=repeat,
-        mode='a'
+    section = rpu.get_section(
+        data=stan_ary,
+        key='nan',
+        except_nan=False,
+        repeat=repeat
     )
-
     # 결측치 채우기
-    if len(repeat_section) > 0:
-        repeat_section = np.array(repeat_section)
-        nan_start_idx_list = repeat_section[:, :1].tolist()
-        nan_end_idx_list = repeat_section[:, 1:].tolist()
-        
-        for nan_si, nan_ei in zip(nan_start_idx_list, nan_end_idx_list):
-            nan_si = nan_si[0]
-            nan_ei = nan_ei[0]
+    if len(section) > 0:
+        section = section['nan']
+        section = np.array(section)
+        # nan_start_idx_list = section[:, :1].tolist()
+        # nan_end_idx_list = section[:, 1:].tolist()
+        for (nan_si, nan_ei) in section:#zip(nan_start_idx_list, nan_end_idx_list):
             df.loc[nan_si-1:nan_ei, column] = df.loc[nan_si-1:nan_ei, column].fillna(method='ffill')
             df.loc[nan_si:nan_ei+1, column] = df.loc[nan_si:nan_ei+1, column].fillna(method='bfill')
-    
     return df
 
 

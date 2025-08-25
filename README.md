@@ -1,3 +1,5 @@
+# 0.2.6
+- dataframeutils 의 fill_repeat_nan 의 에러 수정
 # 0.2.5
 - xlsx 읽는 패키지 install 추가
 # 0.2.4

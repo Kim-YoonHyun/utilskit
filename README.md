@@ -1,3 +1,7 @@
+# 0.2.5
+- xlsx 읽는 패키지 install 추가
+# 0.2.4
+- repeatutils 의 에러 제거
 # 0.2.3
 - dbutils 에 대한 업데이트 진행
 # 0.2.2

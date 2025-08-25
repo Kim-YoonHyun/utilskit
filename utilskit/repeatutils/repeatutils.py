@@ -458,7 +458,6 @@ def get_section(data, repeat, mode='a', key=None,
                 else:
                     if float(k) > max_key:
                         new_result[f'{float(k)-1}_over'] = section
-            del k, section
 
     # 최소 설정이 존재하는 경우
     if min_key is not None:
@@ -471,14 +470,13 @@ def get_section(data, repeat, mode='a', key=None,
                 else:
                     if float(k) < min_key:
                         new_result[f'{k}_under'] = section
-            del k, section
+            
     # 사잇값인 경우
     if between and max_key is not None and min_key is not None:
         for k, section in result.items():
             if '_' in k:
                 try: new_result[f'{min_key}_{max_key}'] += section
                 except KeyError: new_result[f'{min_key}_{max_key}'] = section
-        del k, section
 
     # 새로운 결과값이 존재하면
     if min_key is not None or max_key is not None:

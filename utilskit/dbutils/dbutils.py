@@ -3,7 +3,7 @@ import pandas as pd
 import pymysql
 from sqlalchemy import create_engine
 
-__all__ = ['query2db', 'df2db']
+__all__ = ['query2db', 'df2db', 'get_db_column']
 
 
 # def get_info():

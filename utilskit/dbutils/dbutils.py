@@ -68,40 +68,14 @@ def query2db(query, host, port, user, password, db_name, charset='utf8mb4', auto
     return info
 
 
-# def select_db(conn, query, where=None):
-#     cursor = conn.cursor()
-#     query = query
-#     cursor.execute(query)
-#     info = cursor.fetchall()
-#     cursor.close()
-#     return info
-
-
-# def delete_db(db_info_dict, table, where=None):
-#     cursor = db_connect(db_info_dict).cursor()
-#     if where:
-#         query = f"""
-#             DELETE FROM {table}
-#             where {where}
-#         """
-#     else:
-#         query = f"""
-#             DELETE FROM {table}
-#         """
-#     cursor.execute(query)
-#     cursor.close()
-
-
-# def update_db(db_info_dict, table, set_, where):
-#     cursor = db_connect(db_info_dict).cursor()
-#     query = f"""
-#         update {table}
-#         set {set_}
-#         where {where}
-#     """
-#     cursor.execute(query)
-#     cursor.close()
-
+def get_db_column(host, port, user, password, db_name, table):
+    # 센서 정보 컬럼명 추출
+    query = f"""SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS 
+    WHERE TABLE_SCHEMA = '{db_name}' 
+    AND TABLE_NAME = '{table}'"""
+    column_list = query2db(query, host, port, user, password, db_name)
+    column_list = [x[0] for x in column_list]
+    return column_list
 
 
 def df2db(dataframe, table, host, port, user, password, db_name, 

@@ -1,3 +1,7 @@
+# 0.2.8
+- dbutils 에서 db 의 컬럼명을 리스트로 추출하는 get_db_name 함수 추가
+# 0.2.7
+- repeatutils 에서 정수형 list 를 넣었을때 key 를 통한 구간 파악이 되지 않는 현상 수정
 # 0.2.6
 - dataframeutils 의 fill_repeat_nan 의 에러 수정
 # 0.2.5

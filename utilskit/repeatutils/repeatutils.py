@@ -368,7 +368,9 @@ def get_section(data, repeat, mode='a', key=None,
         else:
             raise ValueError('between = True 로 설정한 경우 max_key 및 min_key 양쪽 다 값이 설정되어있어야합니다.')
     # numpy array 화
-    data = np.array(data)
+    data = list(data.copy())
+    data.append(np.nan)
+    data = np.array(data)[:-1]
 
     # key
     # key 값의 형태를 데이터와 동일하게 설정

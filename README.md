@@ -1,3 +1,13 @@
+# 0.2.11
+- dataframeutils 의 fill_repeat_nan 함수가 3 이하 반복되는 NaN 이 아닌 3 이상 반복되는 NaN 구간에 대해 보정하는 현상 수정
+# 0.2.10
+- repeatutils 에서 between 이 정상작동하지 않는 현상 수정
+## 0.2.10.1
+- 버전 업로드 에러 수정
+## 0.2.10.2
+- 함수 내부 print 제거
+# 0.2.9
+- repeatuils 에서 정수형 list 를 넣었을때 float 으로 변경되도록 수정
 # 0.2.8
 - dbutils 에서 db 의 컬럼명을 리스트로 추출하는 get_db_name 함수 추가
 ## 0.2.8.1

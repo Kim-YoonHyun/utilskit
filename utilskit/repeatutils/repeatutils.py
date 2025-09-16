@@ -348,7 +348,6 @@ def get_section(data, repeat, mode='a', key=None,
                 data = list(map(lambda x:min_key if x <= min_key else x, data))
             else:
                 data = list(map(lambda x:min_key if x < min_key else x, data))
-
     # 사잇값인 경우
     if between:
         # 최댓값 및 최솟값이 설정되어있는지 여부
@@ -356,21 +355,24 @@ def get_section(data, repeat, mode='a', key=None,
             # 최소~최대 사잇값을 전부 최소_최대 형태로 변환
             if max_equal:
                 if min_equal:
-                    data = list(map(lambda x:f'{min_key}_{max_key}' if x >= min_key and x <= max_key else x, data))
+                    data = list(map(lambda x:f'{min_key}<=<={max_key}' if x >= min_key and x <= max_key else x, data))
                 else:
-                    data = list(map(lambda x:f'{min_key}_{max_key}' if x > min_key and x <= max_key else x, data))
+                    data = list(map(lambda x:f'{min_key}<<={max_key}' if x > min_key and x <= max_key else x, data))
             else:
                 if min_equal:
-                    data = list(map(lambda x:f'{min_key}_{max_key}' if x >= min_key and x < max_key else x, data))
+                    data = list(map(lambda x:f'{min_key}<=<{max_key}' if x >= min_key and x < max_key else x, data))
                 else:
-                    data = list(map(lambda x:f'{min_key}_{max_key}' if x > min_key and x < max_key else x, data))
-        
+                    data = list(map(lambda x:f'{min_key}<<{max_key}' if x > min_key and x < max_key else x, data))
         else:
             raise ValueError('between = True 로 설정한 경우 max_key 및 min_key 양쪽 다 값이 설정되어있어야합니다.')
-    # numpy array 화
-    data = list(data.copy())
-    data.append(np.nan)
-    data = np.array(data)[:-1]
+    # numpy float array 화
+    try:
+        data = np.array(data).astype(float)
+    except ValueError:
+        pass
+    # data = list(data.copy())
+    # data.append(np.nan)
+    # data = np.array(data)[:-1]
 
     # key
     # key 값의 형태를 데이터와 동일하게 설정
@@ -474,14 +476,14 @@ def get_section(data, repeat, mode='a', key=None,
                         new_result[f'{k}_under'] = section
             
     # 사잇값인 경우
-    if between and max_key is not None and min_key is not None:
+    if between and (max_key is not None) and (min_key is not None):
         for k, section in result.items():
-            if '_' in k:
-                try: new_result[f'{min_key}_{max_key}'] += section
-                except KeyError: new_result[f'{min_key}_{max_key}'] = section
+            if '<' in k:
+                try: new_result[k] += section
+                except KeyError: new_result[k] = section
 
     # 새로운 결과값이 존재하면
-    if min_key is not None or max_key is not None:
+    if (min_key is not None) or (max_key is not None):
         result = new_result
 
     # 반전

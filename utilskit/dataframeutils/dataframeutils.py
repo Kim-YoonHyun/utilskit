@@ -135,7 +135,8 @@ def fill_repeat_nan(dataframe, column, repeat=5):
         data=stan_ary,
         key='nan',
         except_nan=False,
-        repeat=repeat
+        repeat=repeat,
+        mode='b'
     )
     # 결측치 채우기
     if len(section) > 0:

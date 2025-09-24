@@ -1,3 +1,11 @@
+# 0.2.14
+- repeatutils 의 min_key 를 설정했을 때 min_equal=False 로 두는 경우 정상적인 구간 탐색을 못하는 현상 수정
+# 0.2.13
+- repeatutils 에 section_union 함수 추가
+## 0.2.13.1
+- rpu.get_section 을 써서 에러가 난 부분 수정
+# 0.2.12
+- dataframeutils 의 fill_repeat_nan 함수가 NaN 이 딱 하나만 있는 경우 보정하지 못하는 현상 수정
 # 0.2.11
 - dataframeutils 의 fill_repeat_nan 함수가 3 이하 반복되는 NaN 이 아닌 3 이상 반복되는 NaN 구간에 대해 보정하는 현상 수정
 # 0.2.10

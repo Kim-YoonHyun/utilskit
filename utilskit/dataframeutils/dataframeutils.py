@@ -138,6 +138,22 @@ def fill_repeat_nan(dataframe, column, repeat=5):
         repeat=repeat,
         mode='b'
     )
+
+    # NaN 가 하나만 있는 경우
+    for i, d in enumerate(stan_ary):
+        if str(d) == 'nan':
+            pre_val = str(stan_ary[i-1])
+            if (i-1) == -1:
+                pre_val = '1'
+            
+            try:
+                next_val = str(stan_ary[i+1])
+            except IndexError:
+                next_val = '1'
+
+            if (pre_val != 'nan') and (next_val != 'nan'):
+                section['nan'].append((i, i))
+    
     # 결측치 채우기
     if len(section) > 0:
         section = section['nan']
@@ -147,6 +163,7 @@ def fill_repeat_nan(dataframe, column, repeat=5):
         for (nan_si, nan_ei) in section:#zip(nan_start_idx_list, nan_end_idx_list):
             df.loc[nan_si-1:nan_ei, column] = df.loc[nan_si-1:nan_ei, column].fillna(method='ffill')
             df.loc[nan_si:nan_ei+1, column] = df.loc[nan_si:nan_ei+1, column].fillna(method='bfill')
+    
     return df
 
 

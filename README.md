@@ -78,6 +78,10 @@ pip install utilskit
 
 - README 의 하이퍼링크를 github 절대경로로 변경
 
+### 0.2.18.2
+
+- README 의 하이퍼링크를 github 절대경로로 변경(경로 수정)
+
 ## 0.2.17
 
 - logutils 기능 완전 삭제 > logie 패키지로 분리

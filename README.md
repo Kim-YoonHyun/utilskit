@@ -13,55 +13,55 @@ pip install utilskit
 
 | 함수명                                        | 목적                  |
 | --------------------------------------------- | --------------------- |
-| [confucsion_matrix](https://github.com/Kim-YoonHyun/utilskit/blob/main/docs/confusion_matrix.md) | confusion matrix 생성 |
+| [confucsion_matrix](https://github.com/Kim-YoonHyun/utilskit/blob/master/docs/confusion_matrix.md) | confusion matrix 생성 |
 
 ## - dataframeutils
 
 | 함수명                                     | 목적                  |
 | ------------------------------------------ | --------------------- |
-| [read_df](https://github.com/Kim-YoonHyun/utilskit/blob/main/docs/read_df.md)                 | 데이터 불러오기       |
-| [utc2kor](https://github.com/Kim-YoonHyun/utilskit/blob/main/docs/utc2kor.md)                 | 시간대 변경           |
-| [adnormal2nan](https://github.com/Kim-YoonHyun/utilskit/blob/main/docs/adnormal2nan.md)       | 이상치 --> 결측치     |
-| [time_filling](https://github.com/Kim-YoonHyun/utilskit/blob/main/docs/time_filling.md)       | 시간 확장             |
-| [isdfvalid](https://github.com/Kim-YoonHyun/utilskit/blob/main/docs/isdfvalid.md)             | dataframe 유효성 검증 |
-| [fill_repeat_nan](https://github.com/Kim-YoonHyun/utilskit/blob/main/docs/fill_repeat_nan.md) | 반복성 결측치 보정    |
-| [pin2nan](https://github.com/Kim-YoonHyun/utilskit/blob/main/docs/pin2nan.md)                 | 핀포인트 결측치 보정  |
+| [read_df](https://github.com/Kim-YoonHyun/utilskit/blob/master/docs/read_df.md)                 | 데이터 불러오기       |
+| [utc2kor](https://github.com/Kim-YoonHyun/utilskit/blob/master/docs/utc2kor.md)                 | 시간대 변경           |
+| [adnormal2nan](https://github.com/Kim-YoonHyun/utilskit/blob/master/docs/adnormal2nan.md)       | 이상치 --> 결측치     |
+| [time_filling](https://github.com/Kim-YoonHyun/utilskit/blob/master/docs/time_filling.md)       | 시간 확장             |
+| [isdfvalid](https://github.com/Kim-YoonHyun/utilskit/blob/master/docs/isdfvalid.md)             | dataframe 유효성 검증 |
+| [fill_repeat_nan](https://github.com/Kim-YoonHyun/utilskit/blob/master/docs/fill_repeat_nan.md) | 반복성 결측치 보정    |
+| [pin2nan](https://github.com/Kim-YoonHyun/utilskit/blob/master/docs/pin2nan.md)                 | 핀포인트 결측치 보정  |
 
 ## - dbutils
 
 | 함수명                       | 목적                   |
 | ---------------------------- | ---------------------- |
-| [query2db](https://github.com/Kim-YoonHyun/utilskit/blob/main/docs/query2db.md) | Query 를 DB에 커밋     |
-| [df2db](https://github.com/Kim-YoonHyun/utilskit/blob/main/docs/df2db.md)       | dataframe을 DB 에 삽입 |
+| [query2db](https://github.com/Kim-YoonHyun/utilskit/blob/master/docs/query2db.md) | Query 를 DB에 커밋     |
+| [df2db](https://github.com/Kim-YoonHyun/utilskit/blob/master/docs/df2db.md)       | dataframe을 DB 에 삽입 |
 
 ## - plotutils
 
 | 함수명                               | 목적        |
 | ------------------------------------ | ----------- |
-| [draw_plot](https://github.com/Kim-YoonHyun/utilskit/blob/main/docs/draw_plot.md)       | 이미지 생성 |
-| [draw_subplot](https://github.com/Kim-YoonHyun/utilskit/blob/main/docs/draw_subplot.md) |             |
+| [draw_plot](https://github.com/Kim-YoonHyun/utilskit/blob/master/docs/draw_plot.md)       | 이미지 생성 |
+| [draw_subplot](https://github.com/Kim-YoonHyun/utilskit/blob/master/docs/draw_subplot.md) |             |
 
 ## - repeatutils
 
 | 함수명                                 | 목적                      |
 | -------------------------------------- | ------------------------- |
-| [get_section](https://github.com/Kim-YoonHyun/utilskit/blob/main/docs/get_section.md)     | 반복 구간 산출            |
-| [section_union](https://github.com/Kim-YoonHyun/utilskit/blob/main/docs/section_union.md) | 구간과 구간과의 겹침 연산 |
+| [get_section](https://github.com/Kim-YoonHyun/utilskit/blob/master/docs/get_section.md)     | 반복 구간 산출            |
+| [section_union](https://github.com/Kim-YoonHyun/utilskit/blob/master/docs/section_union.md) | 구간과 구간과의 겹침 연산 |
 
 ## - timeutils
 
 | 함수명                                 | 목적                                       |
 | -------------------------------------- | ------------------------------------------ |
-| [get_now](https://github.com/Kim-YoonHyun/utilskit/blob/main/docs/get_now.md)             | 사용자 지정 방식의 현재 시간 추출          |
-| [time_measure](https://github.com/Kim-YoonHyun/utilskit/blob/main/docs/time_measure.md)   | 정수 --> 시, 분, 초 변환                   |
-| [get_date_list](https://github.com/Kim-YoonHyun/utilskit/blob/main/docs/get_date_list.md) | 입력한 기준값을 통해 전체 날짜 리스트 생성 |
+| [get_now](https://github.com/Kim-YoonHyun/utilskit/blob/master/docs/get_now.md)             | 사용자 지정 방식의 현재 시간 추출          |
+| [time_measure](https://github.com/Kim-YoonHyun/utilskit/blob/master/docs/time_measure.md)   | 정수 --> 시, 분, 초 변환                   |
+| [get_date_list](https://github.com/Kim-YoonHyun/utilskit/blob/master/docs/get_date_list.md) | 입력한 기준값을 통해 전체 날짜 리스트 생성 |
 
 ## - utils
 
 | 함수명                                   | 목적                |
 | ---------------------------------------- | ------------------- |
-| [envs_setting](https://github.com/Kim-YoonHyun/utilskit/blob/main/docs/envs_setting.md)     | 각종 랜덤 시드 설정 |
-| [get_error_info](https://github.com/Kim-YoonHyun/utilskit/blob/main/docs/get_error_info.md) |                     |
+| [envs_setting](https://github.com/Kim-YoonHyun/utilskit/blob/master/docs/envs_setting.md)     | 각종 랜덤 시드 설정 |
+| [get_error_info](https://github.com/Kim-YoonHyun/utilskit/blob/master/docs/get_error_info.md) |                     |
 
 # Version
 ## 2025-11-24 ver 0.2.18

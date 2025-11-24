@@ -8,7 +8,7 @@ build-backend = "setuptools.build_meta"
 name = "utilskit"
 
 # 버전
-version = "0.2.14"
+version = "0.2.18.1"
 
 # 패키지 설명 (짧은 설명)
 description = "다양한 편의성 함수 모음 패키지"

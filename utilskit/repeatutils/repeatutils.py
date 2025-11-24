@@ -7,6 +7,287 @@ import warnings
 __all__ = ['get_section', 'section_union']
 
 
+def reversing(data, start_idx_list, end_idx_list):
+    ary = data.copy()
+    # 반전
+    rev_start_idx_list = [0]
+    rev_end_idx_list = [len(ary)-1]
+    for ns_idx, ne_idx in zip(start_idx_list, end_idx_list):
+        if ns_idx == 0:
+            rev_start_idx_list.pop(0)
+            rev_start_idx_list.append(ne_idx+1)
+            continue
+        if ne_idx == len(ary)-1:
+            rev_end_idx_list.pop(-1)
+            rev_end_idx_list.append(ns_idx-1)
+            continue
+        rev_start_idx_list.append(ne_idx+1)
+        rev_end_idx_list.insert(-1, ns_idx-1)
+    
+    start_idx_list = rev_start_idx_list.copy()
+    end_idx_list = rev_end_idx_list.copy()
+    
+    # 결과 정리
+    result = []
+    for si, ei in zip(start_idx_list, end_idx_list):
+        result.append((si, ei))
+
+    return result
+
+
+def get_section(data, repeat, mode='a', key=None, 
+                max_key=None, min_key=None, between=False, max_equal=True, min_equal=True,
+                except_nan=True, reverse=False):
+    
+    # ===============================================================
+    # 값 설정
+
+    # nan 설정 필터링
+    if str(key) == 'nan' and except_nan:
+        raise ValueError('연산결과에 NaN이 제외되어있습니다. NaN 의 구간을 산정하려면 except_nan 을 False 로 설정해주세요')
+    
+    # 최소 2이상 반복 횟수 설정
+    if repeat <= 1:
+        raise ValueError('반복횟수(repeat)는 최소 2 이상을 입력해야합니다.')
+
+    # 최대값 기준 설정
+    if max_key is not None:
+        # key 값이 있는 경우 경고
+        if key is not None:
+            warnings.warn('max_key 또는 min_key 값이 설정되어있는 경우 key 값은 무시됩니다.')
+        # key 값을 무효화
+        key = None
+        # 기준값이 숫자가 아닌 경우
+        if not isinstance(max_key, (int, float)):
+            raise ValueError('최대값 기준은 숫자값(int, float)으로 입력해야합니다.')
+        # 사잇값이 아닌경우
+        if not between:
+            # 최댓값 이상인 값을 전부 최댓값으로 변환
+            if max_equal:
+                data = list(map(lambda x:max_key if x >= max_key else x, data))
+            # 최댓값 초과인 값을 전부 최댓값으로 변환
+            else:
+                data = list(map(lambda x:max_key+1 if x > max_key else x, data))
+
+    # 최소값 기준 설정
+    if min_key is not None:
+        # key 값이 있는 경우 경고
+        if key is not None:
+            warnings.warn('max_key 또는 min_key 값이 설정되어있는 경우 key 값은 무시됩니다.')
+        # key 값을 무효화
+        key = None
+        # 기준값이 숫자가 아닌 경우
+        if not isinstance(min_key, (int, float)):
+            raise ValueError('최소값 기준은 숫자값(int, float)으로 입력해야합니다.')
+        # 사잇값이 아닌 경우
+        if not between:
+            # 최솟값 이하인 값을 전부 최솟값으로 변환
+            if min_equal:
+                data = list(map(lambda x:min_key if x <= min_key else x, data))
+            else:
+                data = list(map(lambda x:min_key-1 if x < min_key else x, data))
+
+    # 사잇값인 경우
+    if between:
+        # 최댓값 및 최솟값이 설정되어있는지 여부
+        if max_key is not None and min_key is not None:
+            # 최소~최대 사잇값을 전부 최소_최대 형태로 변환
+            if max_equal:
+                if min_equal:
+                    data = list(map(lambda x:f'{min_key}<=<={max_key}' if x >= min_key and x <= max_key else x, data))
+                else:
+                    data = list(map(lambda x:f'{min_key}<<={max_key}' if x > min_key and x <= max_key else x, data))
+            else:
+                if min_equal:
+                    data = list(map(lambda x:f'{min_key}<=<{max_key}' if x >= min_key and x < max_key else x, data))
+                else:
+                    data = list(map(lambda x:f'{min_key}<<{max_key}' if x > min_key and x < max_key else x, data))
+        else:
+            raise ValueError('between = True 로 설정한 경우 max_key 및 min_key 양쪽 다 값이 설정되어있어야합니다.')
+    # numpy float array 화
+    try:
+        data = np.array(data).astype(float)
+    except ValueError:
+        pass
+    # data = list(data.copy())
+    # data.append(np.nan)
+    # data = np.array(data)[:-1]
+
+    # key
+    # key 값의 형태를 데이터와 동일하게 설정
+    if key is not None:
+        key_df = pd.DataFrame([key, np.nan], columns=['key']).astype(str)
+        key = key_df['key'][0]
+
+    # =================================================================
+    # 반복 구간 판단 
+    # data 라는 이름을 가진 string 열 생성
+    df = pd.DataFrame(data, columns=['data']).astype(str)
+    # 한 칸 앞으로 이동
+    df['data_next'] = df['data'].shift(-1)
+    # 한 칸 뒤로 이동
+    df['data_pre'] = df['data'].shift(1)
+    # 이전, 이후 간의 동일성을 기준으로 True, False 산정
+    df['next_tf'] = df['data'] == df['data_next']
+    df['pre_tf'] = df['data'] == df['data_pre']
+    # 값을 더하여 수치값으로 환산
+    df['tf'] = df['next_tf'].astype(int) + df['pre_tf'].astype(int)
+    '''
+    규칙상 1 에서 시작해서 1 로 끝나는 구간은 같은 값이 반복되는 구간임
+    1 과 1 의 사잇값은 반드시 2임
+    '''
+    # =================================================================
+    # 반복 구간 추출
+    data_ary = df['data'].values
+    tf_ary = df['tf'].values
+    result = {'nan':[]}
+    flag = 0
+    for idx, (d, tf) in enumerate(zip(data_ary, tf_ary)):
+        flag += tf
+        # 구간 시작
+        if tf == 1 and flag == 1:
+            start = idx
+        # 구간 끝
+        elif tf == 1 and flag >= 2:
+            # 반복횟수 계산
+            length = (flag+2) // 2
+            # 이상 모드
+            if mode == 'a':
+                if length >= repeat:
+                    # 구간 저장
+                    try: result[d].append((start, idx))
+                    except KeyError: result[d] = [(start, idx)]
+            # 이하 모드
+            elif mode == 'b':
+                if length <= repeat:
+                    # 구간 저장
+                    try: result[d].append((start, idx))
+                    except KeyError: result[d] = [(start, idx)]
+            # 동일 모드
+            elif mode == 'e':
+                if length == repeat:
+                    # 구간 저장
+                    try: result[d].append((start, idx))
+                    except KeyError: result[d] = [(start, idx)]
+            # 모드 설정 에러
+            else:
+                raise KeyError('mode 를 a (above:이상), b (below:이하) 또는 e (equal:동일) 중 하나로 지정해주세요')
+            # 플래그 초기화
+            flag = 0
+
+    # =======================================================
+    # 최종 결과 필터링
+        
+    # NaN 포함 여부
+    if except_nan:
+        del result['nan']
+
+    # 기준 키 값이 존재하는 경우
+    if key is not None:
+        try: result = {key : result[key]}
+        except KeyError:
+            result = {}
+
+    # 최대 설정이 존재하는 경우
+    new_result = {}
+    if max_key is not None:
+        # 사잇값이 아닌 경우
+        if not between:
+            for k, section in result.items():
+                if max_equal:                
+                    if float(k) >= max_key:
+                        new_result[f'{k}_over'] = section
+                else:
+                    if float(k) > max_key:
+                        new_result[f'{float(k)-1}_over'] = section
+
+    # 최소 설정이 존재하는 경우
+    if min_key is not None:
+        # 사잇값이 아닌 경우
+        if not between:
+            for k, section in result.items():
+                if min_equal:
+                    if float(k) <= min_key:
+                        new_result[f'{k}_under'] = section
+                else:
+                    if float(k) < min_key:
+                        new_result[f'{float(k)+1}_under'] = section
+            
+    # 사잇값인 경우
+    if between and (max_key is not None) and (min_key is not None):
+        for k, section in result.items():
+            if '<' in k:
+                try: new_result[k] += section
+                except KeyError: new_result[k] = section
+
+    # 새로운 결과값이 존재하면
+    if (min_key is not None) or (max_key is not None):
+        result = new_result
+
+    # 반전
+    rev_result = {}
+    if reverse:
+        for k, section_list in result.items():
+            start_idx_list = []
+            end_idx_list = []
+            for section in section_list:
+                start = section[0]
+                end = section[1]
+                start_idx_list.append(start)
+                end_idx_list.append(end)
+            rev_section = reversing(data, start_idx_list, end_idx_list)
+            rev_result[f'{k}_rev'] = rev_section
+        return rev_result
+
+    return result
+
+
+def section_union(main_section, sub_section, mode):
+    if mode not in ['-', '+', '&']:
+        raise ValueError(f'mode 에 잘못된 값이 입력되었습니다. -, +, & 중 하나를 입력해주세요')
+
+    if len(main_section) == 0 or len(sub_section) == 0:
+        if mode == '&':
+            return []
+        else:
+            return main_section
+
+    m_min_idx = main_section[0][0]
+    m_max_idx = main_section[-1][1]
+    s_min_idx = sub_section[0][0]
+    s_max_idx = sub_section[-1][1]
+
+    max_idx = max([m_max_idx, s_max_idx])
+
+    main_ary = np.zeros(max_idx+1)
+    sub_ary = np.zeros(max_idx+1)
+
+    for m_sec in main_section:
+        main_ary[m_sec[0]:m_sec[1]+1] = -1
+
+    for s_sec in sub_section:
+        sub_ary[s_sec[0]:s_sec[1]+1] = 100
+
+    whole_ary = main_ary + sub_ary
+    if mode == '-':
+        com_ary = np.where(whole_ary==-1, 1, 0)
+    elif mode == '+':
+        com_ary = np.where((whole_ary>=99) | (whole_ary<=-1), 1, 0)
+    elif mode == '&':
+        com_ary = np.where(whole_ary==99, 1, 0)
+    else:
+        raise ValueError(f'mode 에 잘못된 값이 입력되었습니다. -, +, & 중 하나를 입력해주세요')
+    new_section = get_section(
+        data=com_ary,
+        repeat=2,
+        key=1
+    )
+    if len(new_section) > 0: section_list = list(new_section.values())[0]
+    else: section_list = []
+    return section_list
+
+
+
 # def issame(value1, value2):
 #     # 서로 같은 경우
 #     if value1 == value2:
@@ -266,276 +547,3 @@ __all__ = ['get_section', 'section_union']
 #         result.append((si, ei))
 
 #     return result
-
-
-
-def reversing(data, start_idx_list, end_idx_list):
-    ary = data.copy()
-    # 반전
-    rev_start_idx_list = [0]
-    rev_end_idx_list = [len(ary)-1]
-    for ns_idx, ne_idx in zip(start_idx_list, end_idx_list):
-        if ns_idx == 0:
-            rev_start_idx_list.pop(0)
-            rev_start_idx_list.append(ne_idx+1)
-            continue
-        if ne_idx == len(ary)-1:
-            rev_end_idx_list.pop(-1)
-            rev_end_idx_list.append(ns_idx-1)
-            continue
-        rev_start_idx_list.append(ne_idx+1)
-        rev_end_idx_list.insert(-1, ns_idx-1)
-    
-    start_idx_list = rev_start_idx_list.copy()
-    end_idx_list = rev_end_idx_list.copy()
-    
-    # 결과 정리
-    result = []
-    for si, ei in zip(start_idx_list, end_idx_list):
-        result.append((si, ei))
-
-    return result
-
-
-def get_section(data, repeat, mode='a', key=None, 
-                max_key=None, min_key=None, between=False, max_equal=True, min_equal=True,
-                except_nan=True, reverse=False):
-    
-    # ===============================================================
-    # 값 설정
-
-    # nan 설정 필터링
-    if str(key) == 'nan' and except_nan:
-        raise ValueError('연산결과에 NaN이 제외되어있습니다. NaN 의 구간을 산정하려면 except_nan 을 False 로 설정해주세요')
-    
-    # 최소 2이상 반복 횟수 설정
-    if repeat <= 1:
-        raise ValueError('반복횟수(repeat)는 최소 2 이상을 입력해야합니다.')
-
-    # 최대값 기준 설정
-    if max_key is not None:
-        # key 값이 있는 경우 경고
-        if key is not None:
-            warnings.warn('max_key 또는 min_key 값이 설정되어있는 경우 key 값은 무시됩니다.')
-        # key 값을 무효화
-        key = None
-        # 기준값이 숫자가 아닌 경우
-        if not isinstance(max_key, (int, float)):
-            raise ValueError('최대값 기준은 숫자값(int, float)으로 입력해야합니다.')
-        # 사잇값이 아닌경우
-        if not between:
-            # 최댓값 이상인 값을 전부 최댓값으로 변환
-            if max_equal:
-                data = list(map(lambda x:max_key if x >= max_key else x, data))
-            # 최댓값 초과인 값을 전부 최댓값으로 변환
-            else:
-                data = list(map(lambda x:max_key+1 if x > max_key else x, data))
-
-    # 최소값 기준 설정
-    if min_key is not None:
-        # key 값이 있는 경우 경고
-        if key is not None:
-            warnings.warn('max_key 또는 min_key 값이 설정되어있는 경우 key 값은 무시됩니다.')
-        # key 값을 무효화
-        key = None
-        # 기준값이 숫자가 아닌 경우
-        if not isinstance(min_key, (int, float)):
-            raise ValueError('최소값 기준은 숫자값(int, float)으로 입력해야합니다.')
-        # 사잇값이 아닌 경우
-        if not between:
-            # 최솟값 이하인 값을 전부 최솟값으로 변환
-            if min_equal:
-                data = list(map(lambda x:min_key if x <= min_key else x, data))
-            else:
-                data = list(map(lambda x:min_key-1 if x < min_key else x, data))
-
-    # 사잇값인 경우
-    if between:
-        # 최댓값 및 최솟값이 설정되어있는지 여부
-        if max_key is not None and min_key is not None:
-            # 최소~최대 사잇값을 전부 최소_최대 형태로 변환
-            if max_equal:
-                if min_equal:
-                    data = list(map(lambda x:f'{min_key}<=<={max_key}' if x >= min_key and x <= max_key else x, data))
-                else:
-                    data = list(map(lambda x:f'{min_key}<<={max_key}' if x > min_key and x <= max_key else x, data))
-            else:
-                if min_equal:
-                    data = list(map(lambda x:f'{min_key}<=<{max_key}' if x >= min_key and x < max_key else x, data))
-                else:
-                    data = list(map(lambda x:f'{min_key}<<{max_key}' if x > min_key and x < max_key else x, data))
-        else:
-            raise ValueError('between = True 로 설정한 경우 max_key 및 min_key 양쪽 다 값이 설정되어있어야합니다.')
-    # numpy float array 화
-    try:
-        data = np.array(data).astype(float)
-    except ValueError:
-        pass
-    # data = list(data.copy())
-    # data.append(np.nan)
-    # data = np.array(data)[:-1]
-
-    # key
-    # key 값의 형태를 데이터와 동일하게 설정
-    if key is not None:
-        key_df = pd.DataFrame([key, np.nan], columns=['key']).astype(str)
-        key = key_df['key'][0]
-
-    # =================================================================
-    # 반복 구간 판단 
-    # data 라는 이름을 가진 string 열 생성
-    df = pd.DataFrame(data, columns=['data']).astype(str)
-    # 한 칸 앞으로 이동
-    df['data_next'] = df['data'].shift(-1)
-    # 한 칸 뒤로 이동
-    df['data_pre'] = df['data'].shift(1)
-    # 이전, 이후 간의 동일성을 기준으로 True, False 산정
-    df['next_tf'] = df['data'] == df['data_next']
-    df['pre_tf'] = df['data'] == df['data_pre']
-    # 값을 더하여 수치값으로 환산
-    df['tf'] = df['next_tf'].astype(int) + df['pre_tf'].astype(int)
-    '''
-    규칙상 1 에서 시작해서 1 로 끝나는 구간은 같은 값이 반복되는 구간임
-    1 과 1 의 사잇값은 반드시 2임
-    '''
-    # =================================================================
-    # 반복 구간 추출
-    data_ary = df['data'].values
-    tf_ary = df['tf'].values
-    result = {'nan':[]}
-    flag = 0
-    for idx, (d, tf) in enumerate(zip(data_ary, tf_ary)):
-        flag += tf
-        # 구간 시작
-        if tf == 1 and flag == 1:
-            start = idx
-        # 구간 끝
-        elif tf == 1 and flag >= 2:
-            # 반복횟수 계산
-            length = (flag+2) // 2
-            # 이상 모드
-            if mode == 'a':
-                if length >= repeat:
-                    # 구간 저장
-                    try: result[d].append((start, idx))
-                    except KeyError: result[d] = [(start, idx)]
-            # 이하 모드
-            elif mode == 'b':
-                if length <= repeat:
-                    # 구간 저장
-                    try: result[d].append((start, idx))
-                    except KeyError: result[d] = [(start, idx)]
-            # 동일 모드
-            elif mode == 'e':
-                if length == repeat:
-                    # 구간 저장
-                    try: result[d].append((start, idx))
-                    except KeyError: result[d] = [(start, idx)]
-            # 모드 설정 에러
-            else:
-                raise KeyError('mode 를 a (above:이상), b (below:이하) 또는 e (equal:동일) 중 하나로 지정해주세요')
-            # 플래그 초기화
-            flag = 0
-
-    # =======================================================
-    # 최종 결과 필터링
-        
-    # NaN 포함 여부
-    if except_nan:
-        del result['nan']
-
-    # 기준 키 값이 존재하는 경우
-    if key is not None:
-        try: result = {key : result[key]}
-        except KeyError:
-            result = {}
-
-    # 최대 설정이 존재하는 경우
-    new_result = {}
-    if max_key is not None:
-        # 사잇값이 아닌 경우
-        if not between:
-            for k, section in result.items():
-                if max_equal:                
-                    if float(k) >= max_key:
-                        new_result[f'{k}_over'] = section
-                else:
-                    if float(k) > max_key:
-                        new_result[f'{float(k)-1}_over'] = section
-
-    # 최소 설정이 존재하는 경우
-    if min_key is not None:
-        # 사잇값이 아닌 경우
-        if not between:
-            for k, section in result.items():
-                if min_equal:
-                    if float(k) <= min_key:
-                        new_result[f'{k}_under'] = section
-                else:
-                    if float(k) < min_key:
-                        new_result[f'{float(k)+1}_under'] = section
-            
-    # 사잇값인 경우
-    if between and (max_key is not None) and (min_key is not None):
-        for k, section in result.items():
-            if '<' in k:
-                try: new_result[k] += section
-                except KeyError: new_result[k] = section
-
-    # 새로운 결과값이 존재하면
-    if (min_key is not None) or (max_key is not None):
-        result = new_result
-
-    # 반전
-    rev_result = {}
-    if reverse:
-        for k, section_list in result.items():
-            start_idx_list = []
-            end_idx_list = []
-            for section in section_list:
-                start = section[0]
-                end = section[1]
-                start_idx_list.append(start)
-                end_idx_list.append(end)
-            rev_section = reversing(data, start_idx_list, end_idx_list)
-            rev_result[f'{k}_rev'] = rev_section
-        return rev_result
-
-    return result
-
-
-def section_union(main_section, sub_section, mode):
-
-    if len(main_section) == 0 or len(sub_section) == 0:
-        return main_section
-
-    m_min_idx = main_section[0][0]
-    m_max_idx = main_section[-1][1]
-    s_min_idx = sub_section[0][0]
-    s_max_idx = sub_section[-1][1]
-
-    max_idx = max([m_max_idx, s_max_idx])
-
-    main_ary = np.zeros(max_idx+1)
-    sub_ary = np.zeros(max_idx+1)
-
-    for m_sec in main_section:
-        main_ary[m_sec[0]:m_sec[1]+1] = -1
-
-    for s_sec in sub_section:
-        sub_ary[s_sec[0]:s_sec[1]+1] = 100
-
-    whole_ary = main_ary + sub_ary
-    if mode == '-':
-        com_ary = np.where(whole_ary==-1, 1, 0)
-    elif mode == '+':
-        com_ary = np.where((whole_ary>=99) | (whole_ary<=-1), 1, 0)
-    elif mode == '&':
-        com_ary = np.where(whole_ary==99, 1, 0)
-    new_section = get_section(
-        data=com_ary,
-        repeat=2,
-        key=1
-    )
-    section_list = list(new_section.values())[0]
-    return section_list

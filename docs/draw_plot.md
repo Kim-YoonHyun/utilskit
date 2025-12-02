@@ -59,7 +59,7 @@ plu.draw_plot(
 )
 ```
 
-![basic](plot_explain_images\basic.png)
+![basic](https://github.com/Kim-YoonHyun/utilskit/blob/master/docs/plot_explain_images/basic.png)
 
 ```python
 # 모든 변수 활용
@@ -101,7 +101,7 @@ plu.draw_plot(
 )
 ```
 
-![basic](plot_explain_images\whole.png)
+![basic](https://github.com/Kim-YoonHyun/utilskit/blob/master/docs/plot_explain_images/whole.png)
 
 ## parameters detail
 
@@ -144,7 +144,7 @@ plu.draw_plot(
 )
 ```
 
-![fig](plot_explain_images\fig.png)
+![fig](https://github.com/Kim-YoonHyun/utilskit/blob/master/docs/plot_explain_images/fig.png)
 
 라벨링
 
@@ -165,7 +165,7 @@ plu.draw_plot(
 )
 ```
 
-![label](plot_explain_images\label.png)
+![label](https://github.com/Kim-YoonHyun/utilskit/blob/master/docs/plot_explain_images/label.png)
 
 폰트 - 기본
 
@@ -186,7 +186,7 @@ plu.draw_plot(
 )
 ```
 
-![font-basic](plot_explain_images\font-basic.png)
+![font-basic](https://github.com/Kim-YoonHyun/utilskit/blob/master/docs/plot_explain_images/font-basic.png)
 
 폰트 - 라벨
 
@@ -204,7 +204,7 @@ plu.draw_plot(
 )
 ```
 
-![font-label](plot_explain_images\font-label.png)
+![font-label](https://github.com/Kim-YoonHyun/utilskit/blob/master/docs/plot_explain_images/font-label.png)
 
 선 스타일
 
@@ -237,7 +237,7 @@ plu.draw_plot(
 )
 ```
 
-![line](plot_explain_images\line.png)
+![line](https://github.com/Kim-YoonHyun/utilskit/blob/master/docs/plot_explain_images/line.png)
 
 마커 스타일
 
@@ -296,7 +296,7 @@ plu.draw_plot(
 )
 ```
 
-![marker](plot_explain_images\marker.png)
+![marker](https://github.com/Kim-YoonHyun/utilskit/blob/master/docs/plot_explain_images/marker.png)
 
 데이터 추가
 
@@ -318,7 +318,7 @@ plu.draw_plot(
 )
 ```
 
-![add](plot_explain_images\add.png)
+![add](https://github.com/Kim-YoonHyun/utilskit/blob/master/docs/plot_explain_images/add.png)
 
 구역 강조
 
@@ -353,7 +353,7 @@ plu.draw_plot(
 )
 ```
 
-![focus](plot_explain_images\focus.png)
+![focus](https://github.com/Kim-YoonHyun/utilskit/blob/master/docs/plot_explain_images/focus.png)
 
 저장
 

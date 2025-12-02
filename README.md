@@ -36,10 +36,10 @@ pip install utilskit
 
 ## - plotutils
 
-| 함수명                               | 목적        |
-| ------------------------------------ | ----------- |
-| [draw_plot](https://github.com/Kim-YoonHyun/utilskit/blob/master/docs/draw_plot.md)       | 이미지 생성 |
-| [draw_subplot](https://github.com/Kim-YoonHyun/utilskit/blob/master/docs/draw_subplot.md) |             |
+| 함수명                                                       | 목적                         |
+| ------------------------------------------------------------ | ---------------------------- |
+| [draw_plot](https://github.com/Kim-YoonHyun/utilskit/blob/master/docs/draw_plot.md) | 이미지 생성                  |
+| [draw_subplot](https://github.com/Kim-YoonHyun/utilskit/blob/master/docs/draw_subplot.md) | 서브 플롯 형태의 이미지 생성 |
 
 ## - repeatutils
 
@@ -58,10 +58,10 @@ pip install utilskit
 
 ## - utils
 
-| 함수명                                   | 목적                |
-| ---------------------------------------- | ------------------- |
-| [envs_setting](https://github.com/Kim-YoonHyun/utilskit/blob/master/docs/envs_setting.md)     | 각종 랜덤 시드 설정 |
-| [get_error_info](https://github.com/Kim-YoonHyun/utilskit/blob/master/docs/get_error_info.md) |                     |
+| 함수명                                                       | 목적                        |
+| ------------------------------------------------------------ | --------------------------- |
+| [envs_setting](https://github.com/Kim-YoonHyun/utilskit/blob/master/docs/envs_setting.md) | 각종 랜덤 시드 설정         |
+| [get_error_info](https://github.com/Kim-YoonHyun/utilskit/blob/master/docs/get_error_info.md) | 에러 발생시의 메시지 객체화 |
 
 # Version
 ## 2025-11-24 ver 0.2.18

@@ -86,5 +86,5 @@ union & : [(7, 12), (17, 23)]
 
 (사용예시 결과에 대한 시각화)
 
-![union](repeat\union.png)
+![union](https://github.com/Kim-YoonHyun/utilskit/blob/master/docs/repeat/union.png)
 

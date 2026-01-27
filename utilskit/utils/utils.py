@@ -1,29 +1,20 @@
 import numpy as np
 import pandas as pd
 import shutil
+import textwrap
 import os
 import sys
 import json
 import time
 import csv
 from datetime import date, datetime, timedelta
+import subprocess
+import shlex
 
 
-__all__ = ['envs_setting', 'get_error_info']
+__all__ = ['envs_setting', 'get_error_info', "path_change"]
 
-
-def save_yaml(path, obj):
-    import yaml
-    with open(path, 'w') as f:
-        yaml.dump(obj, f, sort_keys=False)
-
-
-def load_yaml(path):
-    import yaml
-    with open(path, 'r') as f:
-        return yaml.load(f, Loader=yaml.FullLoader)
-
-
+# @log: 기존의 사용성 없는 정크 함수 전부 삭제
 def envs_setting(seed=42):
     '''
     난수지정 등의 환경설정
@@ -45,97 +36,109 @@ def envs_setting(seed=42):
     random.seed(seed)
 
 
+# @log: 함수 `SmartOutput` 추가
+class SmartOutput:
+    """
+    함수 get_error_info 의 출력에 print() 를 했을 때 stream 을 하기 위한
+    결과 변형용 클래스
+    """
+    def __init__(self, data, is_stream=False):
+        self.data = data
+        self.is_stream = is_stream
+        self.full_text = ""
 
-def normalize_1D(ary):
-    '''
-    1차원데이터를 0~1 사이 값으로 normalize 하는 함수
+    # print()가 호출될 때 실행되는 매직 메서드
+    def __repr__(self):
+        if self.is_stream:
+            # 스트림인 경우 루프를 돌며 실시간 출력
+            for event in self.data:
+                if event.type == "response.output_text.delta":
+                    # event 객체 구조에 따라 event.delta 또는 event.text 등을 확인
+                    if hasattr(event, 'delta') and event.delta:
+                        chunk_text = event.delta
+                        print(chunk_text, end="", flush=True)
+                        time.sleep(0.05)
+                        
+                # 2. 모델의 생각이 끝났을 때 알림
+                elif event.type == "response.output_item.added":
+                    pass
 
-    parameters
-    ----------
-    ary: numpy array
-        noramlize 를 적용할 1차원 array
-    
-    returns
-    -------
-    0 ~ 1 사이로 noramalize 된 array
-    '''
-    ary = np.array(ary)
-    
-    if len(ary.shape) > 1:
-        return print('1 차원 데이터만 입력 가능')
-    
-    ary_min = np.min(ary)
-    ary_min = np.subtract(ary, ary_min)
-    ary_max = np.max(ary_min)
-    ary_norm = np.divide(ary_min, ary_max)
-    
-    return ary_norm
-    
+            return "" # print의 마지막 줄바꿈을 위해 빈 값 리턴
+        else:
+            # 에러 메시지나 일반 문자열인 경우 바로 리턴
+            return str(self.data)
+        
 
-def get_error_info():
+def get_error_info(summary=False, api_key=None):
     import traceback
-    traceback_string = traceback.format_exc()
-    return traceback_string
-
-
-def read_jsonl(data_path):
-    try:
-        data_list = validate_data(
-            data_path=data_path,
-            encoding='utf-8-sig'
-        )
+    
+    # 요약 시
+    if summary:
+        # 현재 발생한 예외 정보
+        etype, value, tb = sys.exc_info()
+        # 전체 스택 프레임을 가져옴
+        frame_list = traceback.extract_tb(tb)
+        # 패키지 로직 문구 제거
+        new_frame_list = []
+        for frame in frame_list:
+            if "site-packages" not in frame.filename:
+                new_frame_list.append(frame)
+        # 합치기
+        stack_str = "".join(traceback.format_list(new_frame_list))
+        traceback_string = f"{stack_str} {etype.__name__} : {value}"
+    # 미요약 시
+    else:
+        traceback_string = traceback.format_exc()
+    
+    # AI 를 활용하여 에러 분석 진행
+    if api_key is not None:
+        # openai 패키지가 없을 시 설치
+        try:
+            from openai import OpenAI
+        except ImportError:
+            raise ImportError(
+            "\n"
+            "Optional dependency 'openai' is not installed.\n"
+            "To use this LLM feature, please install it by running:\n"
+            "pip install \"utilskit[llm]\""
+        ) from None
         
-    except UnicodeDecodeError:
-        
-        data_list = validate_data(
-            data_path=data_path,
-            encoding='cp949'
+        # api key 설정
+        os.environ["OPENAI_API_KEY"] = api_key
+
+        # AI 입력
+        print("발생 에러에 대한 AI 추론 진행 중 ...")
+        client = OpenAI()
+        stream_response = client.responses.create(
+            model="gpt-5-nano",
+            input=textwrap.dedent(
+                f"""
+                에러 문구는 아래와 같다.
+                {traceback_string}
+                위의 에러 문구를 통해 
+                1. 에러의 발생 위치
+                2. 에러가 발생한 코드와 에러에 대한 설명
+                3. 에러의 발생 원인에 대한 설명
+                4. 고친 예시 코드를 출력(Markdown 형식 없이 코드 문자만)
+                의 4개 결과를 간략하게 대답하시오.
+                """
+            ),
+            stream=True
         )
-    return data_list
+        return SmartOutput(stream_response, is_stream=True)
     
-    
-def validate_data(data_path, encoding):
-    data_list = []
+    return SmartOutput(traceback_string, is_stream=False)
+
+
+# @log: 신규 함수 `path_change` 추가
+def path_change(text, **kwargs):
+    """
+    template: "{data2}/module" 같은 문자열
+    **kwargs: 가변적인 키워드 인자 (data1=..., value1=... 등)
+    """
     try:
-        with open(data_path, 'r', encoding=encoding) as f:
-            prodigy_data_list = json.load(f)
-        data_list.append(prodigy_data_list)
-    except json.decoder.JSONDecodeError:
-        with open(data_path, 'r', encoding=encoding) as f:
-            for line in f:
-                line = line.replace('\n', '')
-                line.strip()
-                if line[-1] == '}':
-                    json_line = json.loads(line)
-                    data_list.append(json_line)
-    return data_list
-
-
-def tensor2array(x_tensor):
-    x_ary = x_tensor.detach().cpu().numpy()
-    return x_ary
-
-
-def save_tensor(x_tensor, mode):
-    x_ary = tensor2array(x_tensor=x_tensor)
+        # format_map은 딕셔너리 형태의 데이터를 받아 문자열을 치환합니다.
+        return text.format_map(kwargs)
+    except KeyError as e:
+        return f"Error: 문자열에 필요한 {e} 값이 인자로 전달되지 않았습니다."
     
-    if mode == 1:
-        b = x_ary[0]
-        # b = np.round(b, 3)
-        b = np.where(np.absolute(b) > 2, np.round(b, 0), np.round(b, 3))
-        df = pd.DataFrame(b)
-        df.to_csv(f'./temp.csv', index=False, encoding='utf-8-sig')
-        print(df)
-        print(x_ary.shape)
-    
-    if mode == 2:
-        ary = x_ary[0]
-        i, j, k = ary.shape
-        print(i, j, k)
-        for idx in range(k):
-            a = np.squeeze(ary[:, :, idx:idx+1])
-            a = np.where(np.absolute(a) > 2, np.round(a, 0), np.round(a, 3))
-            df = pd.DataFrame(a)
-            df.to_csv(f'./temp{idx}.csv', index=False, encoding='utf-8-sig')
-            print(df)
-        print(x_ary.shape)

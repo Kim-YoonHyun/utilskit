@@ -56,7 +56,12 @@ def versioning(save, pack_path, lib_path):
             new_hash = None
             _ = hash_cache.pop(file_path, None)
         else:
-            new_hash = hu.file2hash(file_path)
+            # [1.0.2] @done_log: pyproject.toml 에 한해서는 version 이라는 라인은 해시 계산에서 제거
+            if "pyproject" in file_path:
+                ignore_words = ["version"]
+            else:
+                ignore_words = []
+            new_hash = hu.file2hash(file_path, ignore_words=ignore_words)
             hash_cache[file_path] = new_hash
 
         # 기존 해시와 신규 해시가 다른 경우
@@ -111,11 +116,13 @@ def versioning(save, pack_path, lib_path):
             with open(os.path.join(pack_path, ".hash_cache.json.tmp"), "w", encoding="utf-8-sig") as f:
                 json.dump(hash_cache, f, indent="\t", ensure_ascii=False)
 
-            # git add & commit 진행
-            vu.git_addcommit(pack_path, f'*{tag}: {now.strftime("%Y-%m-%d")} ver {new_ver}')
-
             # .tmp 를 원본으로 교체
             do = lo.tmp2new(pack_path)
+
+            # [1.0.2] @done_log: 원본대체, git add commit 순서를 변경
+            if do == 1:
+                # git add & commit 진행
+                vu.git_addcommit(pack_path, f'*{tag}: {now.strftime("%Y-%m-%d")} ver {new_ver}')
             if do == 0:
                 lo.delete_tmp(pack_path)
         else:

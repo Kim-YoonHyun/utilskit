@@ -12,15 +12,19 @@ __all__ = [
 ]
 
 
-def content2hashobj(file_path, hash_obj):
+# [1.0.2] @done_log: 키워드기반으로 특정 라인을 해시 계산에서 제외하는 ignore_words 인자 추가
+def content2hashobj(file_path, hash_obj, ignore_words=[]):
+
+    ignore_list = ["@log", "@done_log"] + ignore_words
     # 텍스트 모드로 읽어야 줄(line) 단위 판단이 정확합니다.
     try:
         with open(file_path, "r", encoding="utf-8") as f:
             for line in f:
-                # 해당 키워드가 포함된 줄은 해시 계산에서 제외
-                if "@log" in line or "@done_log" in line:
+
+                # 무시 키워드가 포함된 줄은 해시 계산에서 제외
+                if any(ig in line for ig in ignore_list):
                     continue
-                
+
                 # 나머지 코드 줄만 해시에 반영
                 hash_obj.update(line.encode("utf-8"))
     except UnicodeDecodeError:
@@ -31,7 +35,7 @@ def content2hashobj(file_path, hash_obj):
     return hash_obj
 
 
-def file2hash(file_path):
+def file2hash(file_path, ignore_words=[]):
     # 해시 오브젝트 생성
     hash_obj = hashlib.sha256()
 
@@ -39,7 +43,7 @@ def file2hash(file_path):
     hash_obj.update(file_path.encode())
     
     # 파일 내용 추가
-    hash_obj = content2hashobj(file_path, hash_obj)
+    hash_obj = content2hashobj(file_path, hash_obj, ignore_words)
 
     # 16진수 변환
     hash_ = hash_obj.hexdigest() 

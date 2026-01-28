@@ -1,6 +1,9 @@
 import semver
 import textwrap
+from git import Repo, exc
 
+
+# @log: `version_up` 함수 추가
 def version_up(name, pre_version):
     tag_dict = {
         1:"Major-Release",
@@ -60,3 +63,53 @@ def version_up(name, pre_version):
     tag_text = tag_dict[tag]
 
     return new_version, tag_text
+
+
+STATUS_DICT = {
+    "M":"Modified",
+    "A":"Added",
+    "D":"Deleted",
+    "R":"Renamed",
+    "C":"Copied",
+    "T":"Type changed",
+    "U":"Unmerged",
+    "X":"Unknown"
+}
+
+# @log: git status 정보를 추출하는 `get_git_status` 함수 추가
+def get_git_status(repo_path):
+    try:
+        repo = Repo(repo_path)
+    except exc.InvalidGitRepositoryError:
+        return {"error": "유효한 Git 저장소가 아닙니다."}
+
+    result_list = []
+
+    # Unstaged 변경 사항 추적
+    unstaged_diff_list = repo.index.diff(None)
+    
+    for unstaged_diff in unstaged_diff_list:
+        # 파일 경로
+        uns_f_path = unstaged_diff.a_path
+
+        # 대상 파일 정보 추가
+        status = STATUS_DICT[unstaged_diff.change_type]
+        result_list.append({"file_path": uns_f_path, "status": status})
+
+    # Untracked 파일
+    untrack_list = repo.untracked_files
+    for unt_path in untrack_list:
+        # 대상 파일 정보 추가
+        result_list.append({"file_path": unt_path, "status": "New"})
+    return result_list
+    
+
+# @log: 함수 `git_addcommit` 추가
+def git_addcommit(repo_path, message):
+    try:
+        repo = Repo(repo_path)
+    except exc.InvalidGitRepositoryError:
+        return {"error": "유효한 Git 저장소가 아닙니다."}
+    
+    repo.git.add(A=True)  # git add .
+    repo.index.commit(message) # git commit -m "..."

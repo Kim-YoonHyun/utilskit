@@ -13,8 +13,6 @@ __all__ = [
 
 
 def content2hashobj(file_path, hash_obj):
-
-    # [2.1.0] @done_log: 함수 `content2hashobj` 에서 기록 주석의 해시 제외를 위해 파일 내부 코드를 텍스트 모드로 읽어오는 방식을 추가
     # 텍스트 모드로 읽어야 줄(line) 단위 판단이 정확합니다.
     try:
         with open(file_path, "r", encoding="utf-8") as f:
@@ -79,7 +77,6 @@ def dir2hash(dir_path, ignore_list=[]):
     return hash_
 
 
-# [2.2.0] @done_log: `get_all_hash` 함수에서 fnmatch 를 활용하여 보편적 패턴 감지를 적용시켜 *.tmp 를 인식시킴
 def get_all_hash(dir_path, bundle=[], ignore_list=[]):
 
     result_list = []
@@ -116,7 +113,6 @@ def get_all_hash(dir_path, bundle=[], ignore_list=[]):
     return result_list
 
 # @log: 함수 `reset_values` 삭제
-
 # @log: 함수 `combined2hash` 에서 파일 이름이 manifest.json 인 경우의 논리 제거
 def combined2hash(dir_path, file_list):
     result_list = []

@@ -69,6 +69,8 @@ class SmartOutput:
             return str(self.data)
         
 
+# @log: `get_error_info` 함수에 openai API 기반 AI에러 분석 기능 추가
+# @log: `get_error_info` 함수에서 AI 에러 분석 기능 사용시 openai install 여부 확인
 def get_error_info(summary=False, api_key=None):
     import traceback
     
@@ -130,7 +132,7 @@ def get_error_info(summary=False, api_key=None):
     return SmartOutput(traceback_string, is_stream=False)
 
 
-# @log: 신규 함수 `path_change` 추가
+# @log: 신규 함수 `path_change` 를 추가
 def path_change(text, **kwargs):
     """
     template: "{data2}/module" 같은 문자열

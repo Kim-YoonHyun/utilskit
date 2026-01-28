@@ -1,0 +1,18 @@
+{
+  "template": "https://github.com/Kim-YoonHyun/baseline_lib",
+  "commit": "a751c8c0ce6d5168e40e6f293369abb014744450",
+  "checkout": null,
+  "context": {
+    "cookiecutter": {
+      "package_name": "utilskit",
+      "version": "0.2.18.2",
+      "description": "다양한 편의성 함수 모음 패키지",
+      "python_ver": ">=3.10",
+      "author_name": "kimyh",
+      "email": "kim_yh663927@naver.com",
+      "_template": "https://github.com/Kim-YoonHyun/baseline_lib",
+      "_commit": "a751c8c0ce6d5168e40e6f293369abb014744450"
+    }
+  },
+  "directory": null
+}

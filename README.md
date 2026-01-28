@@ -138,7 +138,7 @@ pip install utilskit
 - utils.py 에서 repeat 관련 함수 제거
 
 
-### 2026-01-28 Version 1.0.0
+## 2026-01-28 Version 1.0.0
 **tag:** @Major-Release
 **Summary:** baseline link / git + hash 기반 검증 구조 최초 적용
 **Detail:**
@@ -176,7 +176,7 @@ New: scripts/versioning.py
  - git 을 통해 변경이력을 확인 (status) 하고 해시검증을 통한 대상선정, 버전업, git add&commit 까지 진행하는 기능
 
 
-### 2026-01-28 Version 1.0.1
+## 2026-01-28 Version 1.0.1
 **tag:** @Patch
 **Summary:** commit 안되는 현상 수정
 **Detail:**
@@ -199,3 +199,10 @@ Modified: scripts/versioning.py
 
 Modified: utilskit/hashutils/hashutils.py
  - 키워드기반으로 특정 라인을 해시 계산에서 제외하는 ignore_words 인자 추가
+
+
+## 2026-01-28 Version 1.0.3
+**tag:** @Patch<br>
+**Summary:** README.md 수정<br>
+**Detail:**
+Modified: README.md

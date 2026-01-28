@@ -5,7 +5,7 @@ import fnmatch
 import json
 import copy
 
-# @log: 해시 함수 전부 모음
+# [1.0.0] @done_log: 해시 함수 전부 모음
 __all__ = [
     "content2hashobj", "file2hash", "dir2hash", 
     "get_all_hash", "combined2hash", "hashlist2hash"
@@ -112,8 +112,8 @@ def get_all_hash(dir_path, bundle=[], ignore_list=[]):
 
     return result_list
 
-# @log: 함수 `reset_values` 삭제
-# @log: 함수 `combined2hash` 에서 파일 이름이 manifest.json 인 경우의 논리 제거
+# [1.0.0] @done_log: 함수 `reset_values` 삭제
+# [1.0.0] @done_log: 함수 `combined2hash` 에서 파일 이름이 manifest.json 인 경우의 논리 제거
 def combined2hash(dir_path, file_list):
     result_list = []
 

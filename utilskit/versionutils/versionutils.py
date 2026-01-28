@@ -3,7 +3,7 @@ import textwrap
 from git import Repo, exc
 
 
-# @log: `version_up` 함수 추가
+# [1.0.0] @done_log: `version_up` 함수 추가
 def version_up(name, pre_version):
     tag_dict = {
         1:"Major-Release",
@@ -76,7 +76,7 @@ STATUS_DICT = {
     "X":"Unknown"
 }
 
-# @log: git status 정보를 추출하는 `get_git_status` 함수 추가
+# [1.0.0] @done_log: git status 정보를 추출하는 `get_git_status` 함수 추가
 def get_git_status(repo_path):
     try:
         repo = Repo(repo_path)
@@ -104,7 +104,7 @@ def get_git_status(repo_path):
     return result_list
     
 
-# @log: 함수 `git_addcommit` 추가
+# [1.0.0] @done_log: 함수 `git_addcommit` 추가
 def git_addcommit(repo_path, message):
     try:
         repo = Repo(repo_path)

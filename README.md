@@ -136,3 +136,41 @@ pip install utilskit
 ## 0.1.1
 - repeatutils.py 추가
 - utils.py 에서 repeat 관련 함수 제거
+
+
+### 2026-01-28 Version 1.0.0
+**tag:** @Major-Release
+**Summary:** baseline link / git + hash 기반 검증 구조 최초 적용
+**Detail:**
+Modified: .gitignore
+
+Modified: README.md
+
+Deleted: git_test.py
+
+Modified: pyproject.toml
+
+Modified: scripts/upload.py
+
+Modified: utilskit/hashutils/hashutils.py
+ - 해시 함수 전부 모음
+ - 함수 `reset_values` 삭제
+ - 함수 `combined2hash` 에서 파일 이름이 manifest.json 인 경우의 논리 제거
+
+Modified: utilskit/utils/utils.py
+ - 기존의 사용성 없는 정크 함수 전부 삭제
+ - 함수 `SmartOutput` 추가
+ - `get_error_info` 함수에 openai API 기반 AI에러 분석 기능 추가
+ - `get_error_info` 함수에서 AI 에러 분석 기능 사용시 openai install 여부 확인
+ - 신규 함수 `path_change` 를 추가
+
+Modified: utilskit/versionutils/versionutils.py
+ - `version_up` 함수 추가
+ - git status 정보를 추출하는 `get_git_status` 함수 추가
+ - 함수 `git_addcommit` 추가
+
+New: .cruft.json
+
+New: scripts/versioning.py
+ - 버전업을 통해 pyproject.toml 의 버전 값을 바꾸는 기능 추가
+ - git 을 통해 변경이력을 확인 (status) 하고 해시검증을 통한 대상선정, 버전업, git add&commit 까지 진행하는 기능

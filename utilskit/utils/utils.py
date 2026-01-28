@@ -14,7 +14,7 @@ import shlex
 
 __all__ = ['envs_setting', 'get_error_info', "path_change"]
 
-# @log: 기존의 사용성 없는 정크 함수 전부 삭제
+# [1.0.0] @done_log: 기존의 사용성 없는 정크 함수 전부 삭제
 def envs_setting(seed=42):
     '''
     난수지정 등의 환경설정
@@ -36,7 +36,7 @@ def envs_setting(seed=42):
     random.seed(seed)
 
 
-# @log: 함수 `SmartOutput` 추가
+# [1.0.0] @done_log: 함수 `SmartOutput` 추가
 class SmartOutput:
     """
     함수 get_error_info 의 출력에 print() 를 했을 때 stream 을 하기 위한
@@ -69,8 +69,8 @@ class SmartOutput:
             return str(self.data)
         
 
-# @log: `get_error_info` 함수에 openai API 기반 AI에러 분석 기능 추가
-# @log: `get_error_info` 함수에서 AI 에러 분석 기능 사용시 openai install 여부 확인
+# [1.0.0] @done_log: `get_error_info` 함수에 openai API 기반 AI에러 분석 기능 추가
+# [1.0.0] @done_log: `get_error_info` 함수에서 AI 에러 분석 기능 사용시 openai install 여부 확인
 def get_error_info(summary=False, api_key=None):
     import traceback
     
@@ -132,7 +132,7 @@ def get_error_info(summary=False, api_key=None):
     return SmartOutput(traceback_string, is_stream=False)
 
 
-# @log: 신규 함수 `path_change` 를 추가
+# [1.0.0] @done_log: 신규 함수 `path_change` 를 추가
 def path_change(text, **kwargs):
     """
     template: "{data2}/module" 같은 문자열

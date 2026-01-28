@@ -7,7 +7,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "utilskit"
-version = "0.2.18"
+version = "1.0.0"
 description = "다양한 편의성 함수 모음 패키지"
 requires-python = ">=3.10"
 authors = [

@@ -1,0 +1,11 @@
+﻿{
+	".gitignore": "5bd88f009dc799af68f381d8a084b41e44c1a988068713e663d01e773c8d636e",
+	"README.md": "eef58c4ec660ffb9c0377292a31ecdba743c2aa47799e95463e2fc3546a3b6a9",
+	"pyproject.toml": "47c18e9c213de07655fadfd4755fb3395287c0e76ebf3c7da98bcd9452cd2395",
+	"scripts/upload.py": "3980639206e6690e1238dafae436504447d665161a8c3ad1f24e25d5e00d4a34",
+	"utilskit/hashutils/hashutils.py": "420e1cc5ec977166a6d5b901026e3a2005e4698d5d3772d127888375b082a1a5",
+	"utilskit/utils/utils.py": "5a8acd54d8061fe113eaebc862ad08dac122741db4dc3ebd80f5d5f8d3fa4c24",
+	"utilskit/versionutils/versionutils.py": "35d6170bf45aab4c9d0d7008f4a6cc31f672940214c584f16166db824a5d4e06",
+	".cruft.json": "d5ce4fdfd055733d964f81c92197b58177d1f322a3824abbf46c324da93c941b",
+	"scripts/versioning.py": "2390cc62519323c51f9bb2250689909d9807bcc3f9dc41b22ee47dc4f41c57d5"
+}

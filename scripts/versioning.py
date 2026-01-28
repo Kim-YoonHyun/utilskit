@@ -13,13 +13,6 @@ import json
 # [1.0.0] @done_log: 버전업을 통해 pyproject.toml 의 버전 값을 바꾸는 기능 추가
 # [1.0.0] @done_log: git 을 통해 변경이력을 확인 (status) 하고 해시검증을 통한 대상선정, 버전업, git add&commit 까지 진행하는 기능
 def versioning(save, pack_path, lib_path):
-    #==
-    sys.path.append(lib_path)
-    from utilskit import versionutils as vu
-    vu.git_addcommit(pack_path, f'*Patch: 2026-01-28 ver 1.0.0')
-    #==
-    sys.exit()
-
     # .hash_cache.json 읽기
     if os.path.isfile(os.path.join(pack_path, ".hash_cache.json")):
         with open(os.path.join(pack_path, ".hash_cache.json"), "r", encoding="utf-8-sig") as f:

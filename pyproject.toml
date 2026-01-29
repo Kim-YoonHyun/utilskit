@@ -7,23 +7,15 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "utilskit"
-version = "1.0.3"
+version = "1.0.4"
 description = "다양한 편의성 함수 모음 패키지"
-requires-python = ">=3.10"
+requires-python = ">=3.11"
 authors = [
     { name = "kimyh", email = "kim_yh663927@naver.com" },
 ]
 dependencies = [
-    "matplotlib==3.10.3",
-    "numpy==2.2.6",
-    "pandas==2.3.1",
-    "PyMySQL==1.1.1",
-    "SQLAlchemy==2.0.41",
-    "tqdm==4.67.1",
-    "xlrd==2.0.2",
-    "openpyxl==3.1.5",
-    "semver>=3.0.4",
-    "toml-w",
+    "numpy>=2.0.0",
+    "pandas>=2.0.0",
 ]
 classifiers = [
     "Programming Language :: Python :: 3",
@@ -36,15 +28,56 @@ file = "README.md"
 content-type = "text/markdown"
 
 [project.optional-dependencies]
+classification = [
+    "numpy>=2.0.0",
+    "pandas>=2.0.0",
+]
+dataframe = [
+    "numpy>=2.0.0",
+    "pandas>=2.0.0",
+    "openpyxl>=3.0.0",
+    "xlrd>=2.0.0",
+]
+db = [
+    "pandas>=2.0.0",
+    "pymysql>=1.1.0",
+    "SQLAlchemy>=2.0.0",
+]
 plot = [
-    "matplotlib",
-    "seaborn",
+    "matplotlib>=3.0.0",
+]
+repeat = [
+    "numpy>=2.0.0",
+    "pandas>=2.0.0",
+]
+time = []
+utils = [
+    "numpy>=2.0.0",
+    "pandas>=2.0.0",
+]
+hash = []
+llm = [
+    "openai>=2.0.0",
+]
+version = [
+    "semver>=3.0.0",
+    "GitPython>=3.1.0",
+]
+file-formats = [
+    "openpyxl>=3.0.0",
+    "xlrd>=2.0.0",
 ]
 all = [
-    "matplotlib",
-    "scikit-learn",
-    "numpy",
-    "pandas",
+    "numpy>=2.0.0",
+    "pandas>=2.0.0",
+    "pymysql>=1.1.0",
+    "SQLAlchemy>=2.0.0",
+    "matplotlib>=3.0.0",
+    "semver>=3.0.0",
+    "GitPython>=3.1.0",
+    "openai>=2.0.0",
+    "openpyxl>=3.0.0",
+    "xlrd>=2.0.0",
 ]
 
 [tool.setuptools]

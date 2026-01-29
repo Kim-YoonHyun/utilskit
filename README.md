@@ -206,3 +206,16 @@ Modified: utilskit/hashutils/hashutils.py
 **Summary:** README.md 수정<br>
 **Detail:**
 Modified: README.md
+
+
+## 2026-01-29 Version 1.0.4
+**Tag:** @Patch<br>
+**Summary:** install 시의 option 설정<br>
+**Detail:**<br>
+Modified: pyproject.toml
+
+Modified: requirements.txt
+
+New: scripts/sync_dependencies.py
+
+New: scripts/sync_dependencies.sh

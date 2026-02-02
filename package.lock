@@ -2,12 +2,12 @@
 	"user_version": "1.1",
 	"package": {
 		"name": "utilskit",
-		"version": "1.0.14",
+		"version": "1.1.0",
 		"resolved": {
-			"docs": "0.0.1",
+			"docs": "0.0.2",
 			"docs_ver": "0.0.0",
-			"scripts": "1.1.0",
-			"utilskit": "1.0.0",
+			"scripts": "1.1.1",
+			"utilskit": "1.0.1",
 			".spec_grp": "0.0.1",
 			".integrity_grp": "0.0.0"
 		},
@@ -24,7 +24,7 @@
 	"component": [
 		{
 			"name": "docs",
-			"version": "0.0.1",
+			"version": "0.0.2",
 			"requires": {},
 			"type": "Document",
 			"build": true,
@@ -58,7 +58,7 @@
 		},
 		{
 			"name": "scripts",
-			"version": "1.1.0",
+			"version": "1.1.1",
 			"requires": {},
 			"type": "Tool",
 			"build": false,
@@ -74,7 +74,7 @@
 		},
 		{
 			"name": "utilskit",
-			"version": "1.0.0",
+			"version": "1.0.1",
 			"requires": {},
 			"type": "Module",
 			"build": true,
@@ -133,7 +133,7 @@
 		}
 	],
 	"build": {
-		"version": "1.0.4",
-		"match": "1.0.13"
+		"version": "1.1.0",
+		"match": "1.0.14"
 	}
 }

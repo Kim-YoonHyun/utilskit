@@ -5,9 +5,9 @@ import fnmatch
 import json
 import copy
 
-# [1.0.0] @done_log: 해시 함수 전부 모음
+# [1.0.1] @done_log: `content2bashobj` 를 __all__ 에서 제거
 __all__ = [
-    "content2hashobj", "file2hash", "dir2hash", 
+    "file2hash", "dir2hash", 
     "get_all_hash", "combined2hash", "hashlist2hash"
 ]
 

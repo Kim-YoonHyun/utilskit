@@ -1,10 +1,10 @@
 ﻿{
 	"/home/kimyh/library/utilskit/docs": {
-		"adnormal2nan.md": "3ab9b766eb715910fff13bdac9d89c0ef91175c20c3a20ae2200f79fa62ac5c1"
+		"adnormal2nan.md": "3ab9b766eb715910fff13bdac9d89c0ef91175c20c3a20ae2200f79fa62ac5c1",
+		"file2hash.md": "f9af650ecc678d3f3616ea603ad77e82f8062a0b11490ab7172ae75a43faea0e"
 	},
 	"/home/kimyh/library/utilskit/scripts": {
-		"upload.py": "d469fc1bc3c686f016e6141e4f59d7af865eb73bedbec26b51639eb8113707d2",
-		"build.py": "7a14f9f2410c2f7fd96d0a72118c63c7e1319f5ebc5fc399f29201bca6e7731a"
+		"upload.py": "b98b87ea8ab83672b46a02ab42f86a6bc9ac5cd062839ee6e434f173b6a1fed4"
 	},
 	"/home/kimyh/library/utilskit/src/utilskit": {
 		"__init__.py": "eb04c50c69250650dafcce3f21ca388aec5546e3f06ad69f1cbc4f1b3513deb6",
@@ -15,7 +15,7 @@
 		"dbutils/__init__.py": "dbd68dda98c188ef843027066221584e6f5fd48aa51becdc02ddfedf3ada38af",
 		"dbutils/dbutils.py": "637fff3600a99f2c5a940be1d4714f7a8b1a921192e58161e3b5ee20d1d08889",
 		"hashutils/__init__.py": "0f132362d5aae33775a6bcfc69b550a34a1dcefe34cc9aae487c92daba3a40ee",
-		"hashutils/hashutils.py": "d82ebd806129256c63f30055d752f95709df5989ff7c573a2a573c912851004c",
+		"hashutils/hashutils.py": "14672c3c8e72f49d92bb8b6089b165c0bf77d27e1b8cddaf505f177ab48faedb",
 		"plotutils/__init__.py": "e3ab8bbb73e8f4f1ab86327c170ea4ae8ee413a314321608400d9a21dd5b68ee",
 		"plotutils/plotutils.py": "92dd318ed0b02957de44ab85fcb28fde240ae252ab7201079ee4023478c0c17c",
 		"repeatutils/__init__.py": "7aa3c0d1400cf65e731ccdd92940faf6aaebf4ad5ec51e930449e4cc1b03b584",

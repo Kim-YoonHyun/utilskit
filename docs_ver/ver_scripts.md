@@ -21,3 +21,14 @@
 **Detail:**<br>
 - Modified: /home/kimyh/library/utilskit/scripts/build.py
  - lock 파일을 활용한 시스템 build 진행
+
+
+
+## 2026-02-02 Version 1.1.1
+**Tag:** @Refactoring<br>
+**Summary:** 업로방식 자동화<br>
+**Detail:**<br>
+- Deleted: /home/kimyh/library/utilskit/scripts/build.py
+- Modified: /home/kimyh/library/utilskit/scripts/upload.py
+ - 파일 검증 후 버전을 수정하고 업로드까지의 내용을 전부 진행
+ - 작업 디렉토리를 pack_path 에서 dist_path 로 변경

@@ -81,3 +81,13 @@
 **Summary:** 모듈 업데이트<br>
 **Detail:**<br>
 -         scripts version (1.0.8) --> (1.1.0)
+
+
+
+## 2026-02-02 Version 1.1.0
+**Tag:** @Feature<br>
+**Summary:** upload 자동화 적용<br>
+**Detail:**<br>
+-            docs version (0.0.1) --> (0.0.2)
+-         scripts version (1.1.0) --> (1.1.1)
+-        utilskit version (1.0.0) --> (1.0.1)

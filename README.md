@@ -17,15 +17,15 @@ pip install utilskit
 
 ## - dataframeutils
 
-| 함수명                                     | 목적                  |
-| ------------------------------------------ | --------------------- |
-| [read_df](https://github.com/Kim-YoonHyun/utilskit/blob/master/docs/read_df.md)                 | 데이터 불러오기       |
-| [utc2kor](https://github.com/Kim-YoonHyun/utilskit/blob/master/docs/utc2kor.md)                 | 시간대 변경           |
-| [adnormal2nan](https://github.com/Kim-YoonHyun/utilskit/blob/master/docs/adnormal2nan.md)       | 이상치 --> 결측치     |
-| [time_filling](https://github.com/Kim-YoonHyun/utilskit/blob/master/docs/time_filling.md)       | 시간 확장             |
-| [isdfvalid](https://github.com/Kim-YoonHyun/utilskit/blob/master/docs/isdfvalid.md)             | dataframe 유효성 검증 |
+| 함수명                                                       | 목적                  |
+| ------------------------------------------------------------ | --------------------- |
+| [read_df](https://github.com/Kim-YoonHyun/utilskit/blob/master/docs/read_df.md) | 데이터 불러오기       |
+| [utc2kor](https://github.com/Kim-YoonHyun/utilskit/blob/master/docs/utc2kor.md) | 시간대 변경           |
+| [adnormal2nan](https://github.com/Kim-YoonHyun/utilskit/blob/master/docs/adnormal2nan.md) | 이상치 --> 결측치     |
+| [time_filling](https://github.com/Kim-YoonHyun/utilskit/blob/master/docs/time_filling.md) | 시간 확장             |
+| [isdfvalid](https://github.com/Kim-YoonHyun/utilskit/blob/master/docs/isdfvalid.md) | dataframe 유효성 검증 |
 | [fill_repeat_nan](https://github.com/Kim-YoonHyun/utilskit/blob/master/docs/fill_repeat_nan.md) | 반복성 결측치 보정    |
-| [pin2nan](https://github.com/Kim-YoonHyun/utilskit/blob/master/docs/pin2nan.md)                 | 핀포인트 결측치 보정  |
+| [pin2nan](https://github.com/Kim-YoonHyun/utilskit/blob/master/docs/pin2nan.md) | 핀포인트 결측치 보정  |
 
 ## - dbutils
 
@@ -33,6 +33,18 @@ pip install utilskit
 | ---------------------------- | ---------------------- |
 | [query2db](https://github.com/Kim-YoonHyun/utilskit/blob/master/docs/query2db.md) | Query 를 DB에 커밋     |
 | [df2db](https://github.com/Kim-YoonHyun/utilskit/blob/master/docs/df2db.md)       | dataframe을 DB 에 삽입 |
+
+## - hashutils
+
+| 함수명                                                       | 목적                                                     |
+| ------------------------------------------------------------ | -------------------------------------------------------- |
+| [file2hash](https://github.com/Kim-YoonHyun/utilskit/blob/master/docs/file2hash.md) | 파일 해시값을 계산                                       |
+| [dir2hash](https://github.com/Kim-YoonHyun/utilskit/blob/master/docs/dir2hash.md) | 폴더에 대한 해시값을 계산                                |
+| [get_all_hash](https://github.com/Kim-YoonHyun/utilskit/blob/master/docs/get_all_hash.md) | 특정 디렉토리 내의 모든 파일 각각에 대한 해시를 계산     |
+| [combined2hash](https://github.com/Kim-YoonHyun/utilskit/blob/master/docs/combined2hash.md) | 특정 디렉토리의 대상 파일 리스트 각각에 대한 해시를 계산 |
+| [hashlist2hash](https://github.com/Kim-YoonHyun/utilskit/blob/master/docs/hashlist2hash.md) | 해시 리스트를 모아서 하나의 통합 해시를 계산             |
+
+
 
 ## - plotutils
 
@@ -64,6 +76,10 @@ pip install utilskit
 | [get_error_info](https://github.com/Kim-YoonHyun/utilskit/blob/master/docs/get_error_info.md) | 에러 발생시의 메시지 객체화 |
 
 # Version
+## 2026-02-02 ver 1.1.0
+
+- hashutils, versionutils 추가
+
 ## 2025-11-24 ver 0.2.18
 
 에러수정

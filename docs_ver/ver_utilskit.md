@@ -154,3 +154,11 @@ Modified: requirements.txt
 New: scripts/sync_dependencies.py
 
 New: scripts/sync_dependencies.sh
+
+
+## 2026-02-02 Version 1.0.1
+**Tag:** @Refactoring<br>
+**Summary:** 최적화<br>
+**Detail:**<br>
+- Modified: /home/kimyh/library/utilskit/src/utilskit/hashutils/hashutils.py
+ - `content2bashobj` 를 __all__ 에서 제거

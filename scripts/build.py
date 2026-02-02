@@ -1,6 +1,9 @@
 import os
 import sys
 import json
+import shutil
+import argparse
+import subprocess
 from pathlib import Path
 
 
@@ -12,27 +15,91 @@ from utilskit.versionutils import get_git_modified, get_git_new, version_up
 from utilskit.utils import path_change
 
 
+# [1.1.0] @done_log: lock 파일을 활용한 시스템 build 진행
 def main():
     scripts_path = Path(__file__).resolve().parent
     pack_path = scripts_path.parent
+    lib_path = pack_path.parent
+    dist_path = pack_path / "dist"
+    dev_path = lib_path / "dev_tools"
 
-    # with open(pack_path / "manifest.json", "r", encoding="utf-8-sig") as f:
-    #     manifest = json.load(f)
-
+    # lock 파일 불러오기
     with open(pack_path / "package.lock", "r", encoding="utf-8-sig") as f:
         lock_info = json.load(f)
     
-    resolved = lock_info["resolved"]
+    p_name = lock_info["package"]["name"]
     c_info_list = lock_info["component"]
 
+    # versioning 실행 여부 파악 = 해시 변동 있는지 파악
+    try:
+        print("현재 파일 해시 검증 중...")
+        cmd = ["python", "-m", "versioning", "--name", p_name]
+        subprocess.run(
+            cmd, 
+            cwd=dev_path, 
+            capture_output=True, 
+            text=True, 
+            timeout=3 
+        )
+    except subprocess.TimeoutExpired as e:
+        # 이 부분이 "무언가 계속 진행됨"을 감지하는 지점입니다.
+        print(e)
+        print("파일 해시에 변동이 있습니다. versioning 을 먼저 진행해야합니다.")
+        sys.exit()
+
+    # 빌드 버전 업 & 매칭
+    p_version = lock_info["package"]["version"]
+    pre_b_version = lock_info["build"]["version"]
+    new_b_version, tag = version_up(p_name, pre_b_version)
+    lock_info["build"]["version"] = new_b_version
+    lock_info["build"]["match"] = p_version
+    with open(pack_path / "package.lock", "w", encoding="utf-8-sig") as f:
+        json.dump(lock_info, f, indent="\t", ensure_ascii=False)
+    
+    # 컴포넌트별 dist 로 옮김
+    common_exclude = lock_info["package"]["exclude"]
     for c_info in c_info_list:
         c_name = c_info["name"]
-        form_c_path = c_info["path"]
         do_build = c_info["build"]
-        print(c_name, do_build)
+        c_mode = c_info["mode"]
+        c_path = c_info["path"]
+        c_exclude = c_info["exclude"]
 
-    include = ["docs", "src", "package.lock", "pyproject.toml", "README.md"]
+        if not do_build:
+            continue
 
+        if c_mode == "dir":
+            rel_path = Path(c_path).relative_to(pack_path)
+            tgt_path = dist_path / rel_path
+            # 기존 staging 폴더 삭제
+            if os.path.exists(tgt_path):
+                shutil.rmtree(tgt_path)
+
+            # 새 폴더 전송(제외 목록이 없는 경우)
+            ignore_list = c_exclude + common_exclude
+            if len(ignore_list) == 0:
+                shutil.copytree(c_path, tgt_path)
+
+            # 새 폴더 전송(제외 목록이 존재하는 경우)
+            else:
+                shutil.copytree(c_path, tgt_path,
+                    ignore=shutil.ignore_patterns(*ignore_list)
+                )
+        elif c_mode == "file_group":
+            file_list = c_info["include"]
+            for file_name in file_list:
+                # src, tgt 설정
+                src = Path(c_path) / file_name
+                tgt = Path(dist_path) / file_name
+
+                # 기존 staging 파일 삭제
+                if os.path.exists(tgt):
+                    os.remove(tgt)
+
+                # 새 파일 전송(manifest 제외)
+                shutil.copy2(src, tgt)
+    
+    
 
 if __name__ == "__main__":
     main()

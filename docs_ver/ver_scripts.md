@@ -12,3 +12,12 @@
 - Deleted: /home/kimyh/library/utilskit/scripts/versioning.py
 - New: /home/kimyh/library/utilskit/scripts/build.py
  - 필요한 함수 자체를 강제 주입
+
+
+
+## 2026-02-02 Version 1.1.0
+**Tag:** @Feature<br>
+**Summary:** build 기능 개선<br>
+**Detail:**<br>
+- Modified: /home/kimyh/library/utilskit/scripts/build.py
+ - lock 파일을 활용한 시스템 build 진행

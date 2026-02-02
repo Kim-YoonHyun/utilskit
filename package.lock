@@ -2,11 +2,11 @@
 	"user_version": "1.1",
 	"package": {
 		"name": "utilskit",
-		"version": "1.0.13",
+		"version": "1.0.14",
 		"resolved": {
 			"docs": "0.0.1",
 			"docs_ver": "0.0.0",
-			"scripts": "1.0.8",
+			"scripts": "1.1.0",
 			"utilskit": "1.0.0",
 			".spec_grp": "0.0.1",
 			".integrity_grp": "0.0.0"
@@ -58,7 +58,7 @@
 		},
 		{
 			"name": "scripts",
-			"version": "1.0.8",
+			"version": "1.1.0",
 			"requires": {},
 			"type": "Tool",
 			"build": false,
@@ -133,8 +133,7 @@
 		}
 	],
 	"build": {
-		"current": "",
-		"previous": "1.0.4",
-		"match": ""
+		"version": "1.0.4",
+		"match": "1.0.13"
 	}
 }

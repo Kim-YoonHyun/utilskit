@@ -73,3 +73,11 @@
 **Summary:** 아카이빙 오류<br>
 **Detail:**<br>
 -         scripts version (1.0.7) --> (1.0.8)
+
+
+
+## 2026-02-02 Version 1.0.14
+**Tag:** @Patch<br>
+**Summary:** 모듈 업데이트<br>
+**Detail:**<br>
+-         scripts version (1.0.8) --> (1.1.0)

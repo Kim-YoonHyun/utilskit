@@ -162,3 +162,12 @@ New: scripts/sync_dependencies.sh
 **Detail:**<br>
 - Modified: /home/kimyh/library/utilskit/src/utilskit/hashutils/hashutils.py
  - `content2bashobj` 를 __all__ 에서 제거
+
+
+
+## 2026-02-02 Version 1.0.2
+**Tag:** @Patch<br>
+**Summary:** import 에러 수정<br>
+**Detail:**<br>
+- Modified: /home/kimyh/library/utilskit/src/utilskit/versionutils/versionutils.py
+ - __all__ 추가

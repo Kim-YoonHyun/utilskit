@@ -107,3 +107,11 @@
 **Summary:** 모듈 업데이트<br>
 **Detail:**<br>
 -         scripts version (1.1.2) --> (1.1.3)
+
+
+
+## 2026-02-02 Version 1.1.3
+**Tag:** @Patch<br>
+**Summary:** 모듈 에러 수정<br>
+**Detail:**<br>
+-        utilskit version (1.0.1) --> (1.0.2)

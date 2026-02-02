@@ -6,6 +6,10 @@ from pathlib import Path
 from git import Repo, exc
 
 
+# [1.0.2] @done_log: __all__ 추가
+__all__ = ["version_up", "get_git_modified", "get_git_new", "git_addcommit"]
+
+
 # [1.0.0] @done_log: tag 예시 리스트 출력시 strip 적용
 def version_up(name, pre_version):
     tag_dict = {

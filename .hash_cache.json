@@ -25,7 +25,7 @@
 		"utils/__init__.py": "90edb159a3182e25bd109b592f86092d3d0e6267b2ce1d2f62c4192a2d6fa131",
 		"utils/utils.py": "8ceabb598026827676a31d159625c887431994b1f24303b32f33afb80e5e2cd8",
 		"versionutils/__init__.py": "399be008a9b70de4626295bb0567fbe2403684db60320f5078f95ba05afc484c",
-		"versionutils/versionutils.py": "1a087e96e28aa53547991879a183575347d5169cfcf334f7a4cdd0c19aee1cc7"
+		"versionutils/versionutils.py": "ee9e3f6fb3a1f2f76d6cf12ea05c20d0a39999b97521a65c6614752c838338f6"
 	},
 	"/home/kimyh/library/utilskit/.spec_grp": {
 		"manifest.json": "b6388bd4c523593ccd2eb4a63081c585ebceda13d85e36e63ac81073fad8e708"

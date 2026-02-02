@@ -1,7 +1,7 @@
-build/
-*-info/
-test/
-__pycache__/
-dist/
+﻿*-info
 *.tmp
-.hash_cache.json
+__pycache__
+archive
+dist
+old
+test

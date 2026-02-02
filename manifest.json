@@ -1,0 +1,176 @@
+{
+	"log": [
+		"# [0.0.1] @done_log: 패키지용 manifest 컴포넌트 구성",
+		"# [0.0.1] @done_log: untracked 키 추가",
+		"# [0.0.1] @done_log: build 키 추가"
+	],
+	"common_exclude":[
+		"__pycache__",
+		"old",
+		"__version__.py",
+		"*.tmp",
+		"*.lock",
+        "*-info"
+	],
+	"component": [
+		{
+			"name": "archive",
+			"requires": {},
+			"type": "Artifact",
+			"manage": false,
+			"build": false,
+			"mode": "dir",
+			"path": "{pack_path}/{name}",
+			"include": [
+				"*"
+			],
+			"bundle": [],
+			"exclude": [],
+			"untracked":[]
+		},
+		{
+			"name": "dist",
+			"requires": {},
+			"type": "Artifact",
+			"manage": false,
+			"build": false,
+			"mode": "dir",
+			"path": "{pack_path}/{name}",
+			"include": [
+				"*"
+			],
+			"bundle": [],
+			"exclude": [],
+			"untracked":[]
+		},
+		{
+			"name": "docs",
+			"requires": {},
+			"type": "Document",
+			"manage": true,
+			"build": true,
+			"mode": "dir",
+			"path": "{pack_path}/{name}",
+			"include": [
+				"*"
+			],
+			"bundle": [],
+			"exclude": [],
+			"untracked":[]
+		},
+        {
+			"name": "docs_ver",
+			"requires": {},
+			"type": "Document",
+			"manage": true,
+			"build": false,
+			"mode": "dir",
+			"path": "{pack_path}/{name}",
+			"include": ["*"],
+			"bundle": [],
+			"exclude": [],
+			"untracked":["*.md"]
+		},
+		{
+			"name": "scripts",
+			"requires": {},
+			"type": "Tool",
+			"manage": true,
+			"build": false,
+			"mode": "dir",
+			"path": "{pack_path}/{name}",
+			"include": [
+				"*"
+			],
+			"bundle": [],
+			"exclude": [],
+			"untracked":[]
+		},
+		{
+			"name": "utilskit",
+			"requires": {},
+			"type": "Module",
+			"manage": true,
+			"build": true,
+			"mode": "dir",
+			"path": "{src_path}/{name}",
+			"include": [
+				"*"
+			],
+			"bundle": [],
+			"exclude": [],
+			"untracked":[]
+		},
+        {
+			"name": "test",
+			"requires": {},
+			"type": "Module",
+			"manage": false,
+			"build": false,
+			"mode": "dir",
+			"path": "{src_path}/{name}",
+			"include": [
+				"*"
+			],
+			"bundle": [],
+			"exclude": [],
+			"untracked":[]
+		},
+		{
+			"name": ".spec_grp",
+			"requires": {},
+			"type": "Manifest",
+			"manage": true,
+			"build": true,
+			"mode": "file_group",
+			"path": "{pack_path}/{name}",
+			"include": [
+				".cruft.json",
+				"manifest.json",
+				"pyproject.toml",
+				"README.md"
+			],
+			"bundle": [],
+			"exclude": [],
+			"untracked":[
+				"pyproject.toml",
+				"README.md"
+			]
+		},
+		{
+			"name": ".integrity_grp",
+			"requires": {},
+			"type": "Manifest",
+			"manage": true,
+			"build": true,
+			"mode": "file_group",
+			"path": "{pack_path}/{name}",
+			"include": [
+				".hash_cache.json",
+				"package.lock",
+				"requirements.txt"
+			],
+			"bundle": [],
+			"exclude": [],
+			"untracked":[
+				".hash_cache.json",
+				"package.lock"
+			]
+		},
+		{
+			"name": ".aux_grp",
+			"requires": {},
+			"type": "Document",
+			"manage": false,
+			"build": false,
+			"mode": "file_group",
+			"path": "{pack_path}/{name}",
+			"include": [
+				".gitignore"
+			],
+			"bundle": [],
+			"exclude": [],
+			"untracked":[]
+		}
+	]
+}

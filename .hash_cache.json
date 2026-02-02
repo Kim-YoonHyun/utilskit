@@ -1,0 +1,33 @@
+﻿{
+	"/home/kimyh/library/utilskit/docs": {
+		"adnormal2nan.md": "3ab9b766eb715910fff13bdac9d89c0ef91175c20c3a20ae2200f79fa62ac5c1"
+	},
+	"/home/kimyh/library/utilskit/scripts": {
+		"upload.py": "d469fc1bc3c686f016e6141e4f59d7af865eb73bedbec26b51639eb8113707d2",
+		"build.py": "e1ee92c7f3c514e027cee4e4dc96d8143f8c7632e2101643dc74037feec35584"
+	},
+	"/home/kimyh/library/utilskit/src/utilskit": {
+		"__init__.py": "eb04c50c69250650dafcce3f21ca388aec5546e3f06ad69f1cbc4f1b3513deb6",
+		"classificationutils/__init__.py": "c5e78eb677c9800c057b84a27b0415348d9c4c734295993cbe820fb8d7ca3f70",
+		"classificationutils/classificationutils.py": "fa760e7b05650d8b296c85dafc2b4e71051269d585a1a681e91ed42e84917ca2",
+		"dataframeutils/__init__.py": "0964f9f280fb2efa8f6cfafa655c8f84f630fc9e45c8b4583de296a547b61272",
+		"dataframeutils/dataframeutils.py": "3021891c6fffa44605c3a5bcb54149c82207042c8287ab6c7f5d11b62c01d041",
+		"dbutils/__init__.py": "dbd68dda98c188ef843027066221584e6f5fd48aa51becdc02ddfedf3ada38af",
+		"dbutils/dbutils.py": "637fff3600a99f2c5a940be1d4714f7a8b1a921192e58161e3b5ee20d1d08889",
+		"hashutils/__init__.py": "0f132362d5aae33775a6bcfc69b550a34a1dcefe34cc9aae487c92daba3a40ee",
+		"hashutils/hashutils.py": "d82ebd806129256c63f30055d752f95709df5989ff7c573a2a573c912851004c",
+		"plotutils/__init__.py": "e3ab8bbb73e8f4f1ab86327c170ea4ae8ee413a314321608400d9a21dd5b68ee",
+		"plotutils/plotutils.py": "92dd318ed0b02957de44ab85fcb28fde240ae252ab7201079ee4023478c0c17c",
+		"repeatutils/__init__.py": "7aa3c0d1400cf65e731ccdd92940faf6aaebf4ad5ec51e930449e4cc1b03b584",
+		"repeatutils/repeatutils.py": "743994a01d92cff01d3ed1f6656abde7cc38dcf1299078b38db104e9186df6bb",
+		"timeutils/__init__.py": "5ca084fe0f4c27efa2bf37f3efb3b2b44ba8b865dfb613d93d9b487c11ed786b",
+		"timeutils/timeutils.py": "059df668c8cca61088b83caace87aebe0e27be7216e07835fe63c78b5d33cf9a",
+		"utils/__init__.py": "90edb159a3182e25bd109b592f86092d3d0e6267b2ce1d2f62c4192a2d6fa131",
+		"utils/utils.py": "8ceabb598026827676a31d159625c887431994b1f24303b32f33afb80e5e2cd8",
+		"versionutils/__init__.py": "399be008a9b70de4626295bb0567fbe2403684db60320f5078f95ba05afc484c",
+		"versionutils/versionutils.py": "1a087e96e28aa53547991879a183575347d5169cfcf334f7a4cdd0c19aee1cc7"
+	},
+	"/home/kimyh/library/utilskit/.spec_grp": {
+		"manifest.json": "b6388bd4c523593ccd2eb4a63081c585ebceda13d85e36e63ac81073fad8e708"
+	}
+}

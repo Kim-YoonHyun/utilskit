@@ -1,0 +1,140 @@
+﻿{
+	"user_version": "1.1",
+	"package": {
+		"name": "utilskit",
+		"version": "1.0.13",
+		"resolved": {
+			"docs": "0.0.1",
+			"docs_ver": "0.0.0",
+			"scripts": "1.0.8",
+			"utilskit": "1.0.0",
+			".spec_grp": "0.0.1",
+			".integrity_grp": "0.0.0"
+		},
+		"hash": "18faf7516fe8f94b95bbbab592ca68b67b410f1f1cc9bd7399a706d63d8173a9",
+		"exclude": [
+			"__pycache__",
+			"old",
+			"__version__.py",
+			"*.tmp",
+			"*.lock",
+			"*-info"
+		]
+	},
+	"component": [
+		{
+			"name": "docs",
+			"version": "0.0.1",
+			"requires": {},
+			"type": "Document",
+			"build": true,
+			"mode": "dir",
+			"form_c_path": "{pack_path}/{name}",
+			"path": "/home/kimyh/library/utilskit/docs",
+			"include": [
+				"*"
+			],
+			"bundle": [],
+			"exclude": [],
+			"untracked": []
+		},
+		{
+			"name": "docs_ver",
+			"version": "0.0.0",
+			"requires": {},
+			"type": "Document",
+			"build": false,
+			"mode": "dir",
+			"form_c_path": "{pack_path}/{name}",
+			"path": "/home/kimyh/library/utilskit/docs_ver",
+			"include": [
+				"*"
+			],
+			"bundle": [],
+			"exclude": [],
+			"untracked": [
+				"*.md"
+			]
+		},
+		{
+			"name": "scripts",
+			"version": "1.0.8",
+			"requires": {},
+			"type": "Tool",
+			"build": false,
+			"mode": "dir",
+			"form_c_path": "{pack_path}/{name}",
+			"path": "/home/kimyh/library/utilskit/scripts",
+			"include": [
+				"*"
+			],
+			"bundle": [],
+			"exclude": [],
+			"untracked": []
+		},
+		{
+			"name": "utilskit",
+			"version": "1.0.0",
+			"requires": {},
+			"type": "Module",
+			"build": true,
+			"mode": "dir",
+			"form_c_path": "{src_path}/{name}",
+			"path": "/home/kimyh/library/utilskit/src/utilskit",
+			"include": [
+				"*"
+			],
+			"bundle": [],
+			"exclude": [],
+			"untracked": []
+		},
+		{
+			"name": ".spec_grp",
+			"version": "0.0.1",
+			"requires": {},
+			"type": "Manifest",
+			"build": true,
+			"mode": "file_group",
+			"form_c_path": "{pack_path}/{name}",
+			"path": "/home/kimyh/library/utilskit",
+			"include": [
+				".cruft.json",
+				"manifest.json",
+				"pyproject.toml",
+				"README.md"
+			],
+			"bundle": [],
+			"exclude": [],
+			"untracked": [
+				"pyproject.toml",
+				"README.md"
+			]
+		},
+		{
+			"name": ".integrity_grp",
+			"version": "0.0.0",
+			"requires": {},
+			"type": "Manifest",
+			"build": true,
+			"mode": "file_group",
+			"form_c_path": "{pack_path}/{name}",
+			"path": "/home/kimyh/library/utilskit",
+			"include": [
+				".hash_cache.json",
+				"package.lock",
+				"requirements.txt"
+			],
+			"bundle": [],
+			"exclude": [],
+			"untracked": [
+				".hash_cache.json",
+				"package.lock"
+			]
+		}
+	],
+	"build": {
+		"current": "",
+		"previous": "1.0.4",
+		"match": ""
+	}
+}

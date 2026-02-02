@@ -1,9 +1,12 @@
+import sys
+import os
 import semver
 import textwrap
+from pathlib import Path
 from git import Repo, exc
 
 
-# [1.0.0] @done_log: `version_up` 함수 추가
+# [1.0.0] @done_log: tag 예시 리스트 출력시 strip 적용
 def version_up(name, pre_version):
     tag_dict = {
         1:"Major-Release",
@@ -36,7 +39,7 @@ def version_up(name, pre_version):
         | 0 : Ignore        | Ignore     | 1.1.12 --> 1.1.12       |
         ------------------------------------------------------------
         """
-    )
+    ).strip()
     print(string)
     while True:
         try:
@@ -77,39 +80,53 @@ STATUS_DICT = {
 }
 
 # [1.0.0] @done_log: git status 정보를 추출하는 `get_git_status` 함수 추가
-def get_git_status(repo_path):
-    try:
-        repo = Repo(repo_path)
-    except exc.InvalidGitRepositoryError:
-        return {"error": "유효한 Git 저장소가 아닙니다."}
+# [1.0.0] @done_log: 함수 `get_git_status` 함수명을 `get_git_modified` 로 변경
+# [1.0.0] @done_log: 함수 `get_git_modified` 내부에서 컴포넌트별 이력 탐지 구조 추가
+def get_git_modified(repo_path, search_path):
+    # 깃 정보 추출
+    repo = Repo(repo_path)
 
+    # 경로 posix 화 (git 표준)
+    search_path = Path(search_path).as_posix()
+
+    # 결과 변수 초기화
     result_list = []
 
     # Unstaged 변경 사항 추적
-    unstaged_diff_list = repo.index.diff(None)
+    unstaged_diff_list = repo.index.diff(None, paths=[search_path])
     
     for unstaged_diff in unstaged_diff_list:
         # 파일 경로
         uns_f_path = unstaged_diff.a_path
-
+        full_f_path = str(Path(repo_path) / uns_f_path)
+        
         # 대상 파일 정보 추가
         status = STATUS_DICT[unstaged_diff.change_type]
-        result_list.append({"file_path": uns_f_path, "status": status})
+        result_list.append({"file_path": full_f_path, "status": status})
+
+    return result_list
+    
+
+# [1.0.0] @done_log: 함수 `get_git_new` 추가
+def get_git_new(repo_path, search_path):
+    # 깃 정보 추출
+    repo = Repo(repo_path)
+
+    # 결과 변수 초기화
+    result_list = []
 
     # Untracked 파일
     untrack_list = repo.untracked_files
     for unt_path in untrack_list:
         # 대상 파일 정보 추가
-        result_list.append({"file_path": unt_path, "status": "New"})
+        file_path = str(repo_path / unt_path)
+        if search_path in file_path:
+            result_list.append({"file_path": file_path, "status": "New"})
     return result_list
-    
+
 
 # [1.0.0] @done_log: 함수 `git_addcommit` 추가
 def git_addcommit(repo_path, message):
-    try:
-        repo = Repo(repo_path)
-    except exc.InvalidGitRepositoryError:
-        return {"error": "유효한 Git 저장소가 아닙니다."}
-    
+    repo = Repo(repo_path)
     repo.git.add(A=True)  # git add .
     repo.index.commit(message) # git commit -m "..."

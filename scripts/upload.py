@@ -68,8 +68,9 @@ def main():
         json.dump(lock_info, f, indent="\t", ensure_ascii=False)
 
     # toml 버전 업
+    # [1.1.3] @done_log: toml encoding 을 utf-8-sig 에서 utf-8 로 변경
     toml_info["project"]["version"] = new_b_version
-    with open(pack_path / "pyproject.toml", "w", encoding="utf-8-sig") as f:
+    with open(pack_path / "pyproject.toml", "w", encoding="utf-8") as f:
         f.write(toml_info.as_string())
     
     # 컴포넌트별 dist 로 옮김

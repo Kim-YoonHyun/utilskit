@@ -99,3 +99,11 @@
 **Summary:** 듈 업데이트<br>
 **Detail:**<br>
 -         scripts version (1.1.1) --> (1.1.2)
+
+
+
+## 2026-02-02 Version 1.1.2
+**Tag:** @Patch<br>
+**Summary:** 모듈 업데이트<br>
+**Detail:**<br>
+-         scripts version (1.1.2) --> (1.1.3)

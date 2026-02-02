@@ -40,3 +40,12 @@
 **Summary:** 설정 오류 수정<br>
 **Detail:**<br>
 - Modified: /home/kimyh/library/utilskit/scripts/upload.py
+
+
+
+## 2026-02-02 Version 1.1.3
+**Tag:** @Patch<br>
+**Summary:** 설정 오류 수정<br>
+**Detail:**<br>
+- Modified: /home/kimyh/library/utilskit/scripts/upload.py
+ - toml encoding 을 utf-8-sig 에서 utf-8 로 변경

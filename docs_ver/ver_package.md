@@ -91,3 +91,11 @@
 -            docs version (0.0.1) --> (0.0.2)
 -         scripts version (1.1.0) --> (1.1.1)
 -        utilskit version (1.0.0) --> (1.0.1)
+
+
+
+## 2026-02-02 Version 1.1.1
+**Tag:** @Patch<br>
+**Summary:** 듈 업데이트<br>
+**Detail:**<br>
+-         scripts version (1.1.1) --> (1.1.2)

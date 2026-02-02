@@ -32,3 +32,11 @@
 - Modified: /home/kimyh/library/utilskit/scripts/upload.py
  - 파일 검증 후 버전을 수정하고 업로드까지의 내용을 전부 진행
  - 작업 디렉토리를 pack_path 에서 dist_path 로 변경
+
+
+
+## 2026-02-02 Version 1.1.2
+**Tag:** @Patch<br>
+**Summary:** 설정 오류 수정<br>
+**Detail:**<br>
+- Modified: /home/kimyh/library/utilskit/scripts/upload.py

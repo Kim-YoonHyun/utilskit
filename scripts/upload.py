@@ -68,7 +68,7 @@ def main():
         json.dump(lock_info, f, indent="\t", ensure_ascii=False)
 
     # toml 버전 업
-    toml_info["version"] = new_b_version
+    toml_info["project"]["version"] = new_b_version
     with open(pack_path / "pyproject.toml", "w", encoding="utf-8-sig") as f:
         f.write(toml_info.as_string())
     

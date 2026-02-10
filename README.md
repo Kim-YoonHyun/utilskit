@@ -90,6 +90,10 @@ pip install utilskit
 
 - README, docs 구조 변경
 
+### 1.0.5
+
+- hashutils, versionutils 기능 추가
+
 ### 0.2.18.1
 
 - README 의 하이퍼링크를 github 절대경로로 변경

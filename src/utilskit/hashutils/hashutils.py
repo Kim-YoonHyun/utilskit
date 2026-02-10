@@ -35,12 +35,13 @@ def content2hashobj(file_path, hash_obj, ignore_words=[]):
     return hash_obj
 
 
+# [1.0.3] @done_log: `file2hash` 함수에서 경로를 해시 계산에 넣는 부분을 제거
 def file2hash(file_path, ignore_words=[]):
     # 해시 오브젝트 생성
     hash_obj = hashlib.sha256()
 
-    # 파일 경로를 해시에 추가
-    hash_obj.update(file_path.encode())
+    # # 파일 경로를 해시에 추가
+    # hash_obj.update(file_path.encode())
     
     # 파일 내용 추가
     hash_obj = content2hashobj(file_path, hash_obj, ignore_words)

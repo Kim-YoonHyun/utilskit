@@ -115,3 +115,12 @@
 **Summary:** 모듈 에러 수정<br>
 **Detail:**<br>
 -        utilskit version (1.0.1) --> (1.0.2)
+
+
+
+## 2026-02-10 Version 1.1.4
+**Tag:** @Patch<br>
+**Summary:** 모듈 업데이트<br>
+**Detail:**<br>
+-        utilskit version (1.0.2) --> (1.0.3)
+-       .spec_grp version (0.0.1) --> (0.0.2)

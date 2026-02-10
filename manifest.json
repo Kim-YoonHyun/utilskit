@@ -7,10 +7,10 @@
 	"common_exclude":[
 		"__pycache__",
 		"old",
-		"__version__.py",
+		"log",
 		"*.tmp",
-		"*.lock",
-        "*-info"
+        "*-info",
+		".gitkeep"
 	],
 	"component": [
 		{

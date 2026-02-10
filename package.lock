@@ -2,23 +2,23 @@
 	"user_version": "1.1",
 	"package": {
 		"name": "utilskit",
-		"version": "1.1.3",
+		"version": "1.1.4",
 		"resolved": {
 			"docs": "0.0.2",
 			"docs_ver": "0.0.0",
 			"scripts": "1.1.3",
-			"utilskit": "1.0.2",
-			".spec_grp": "0.0.1",
+			"utilskit": "1.0.3",
+			".spec_grp": "0.0.2",
 			".integrity_grp": "0.0.0"
 		},
 		"hash": "18faf7516fe8f94b95bbbab592ca68b67b410f1f1cc9bd7399a706d63d8173a9",
 		"exclude": [
 			"__pycache__",
 			"old",
-			"__version__.py",
+			"log",
 			"*.tmp",
-			"*.lock",
-			"*-info"
+			"*-info",
+			".gitkeep"
 		]
 	},
 	"component": [
@@ -74,7 +74,7 @@
 		},
 		{
 			"name": "utilskit",
-			"version": "1.0.2",
+			"version": "1.0.3",
 			"requires": {},
 			"type": "Module",
 			"build": true,
@@ -90,7 +90,7 @@
 		},
 		{
 			"name": ".spec_grp",
-			"version": "0.0.1",
+			"version": "0.0.2",
 			"requires": {},
 			"type": "Manifest",
 			"build": true,
@@ -133,7 +133,7 @@
 		}
 	],
 	"build": {
-		"version": "1.1.3",
-		"match": "1.1.2"
+		"version": "1.1.4",
+		"match": "1.1.3"
 	}
 }

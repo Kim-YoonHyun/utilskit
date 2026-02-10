@@ -171,3 +171,12 @@ New: scripts/sync_dependencies.sh
 **Detail:**<br>
 - Modified: /home/kimyh/library/utilskit/src/utilskit/versionutils/versionutils.py
  - __all__ 추가
+
+
+
+## 2026-02-10 Version 1.0.3
+**Tag:** @Patch<br>
+**Summary:** 계산 알고리즘 수정<br>
+**Detail:**<br>
+- Modified: /home/kimyh/library/utilskit/src/utilskit/hashutils/hashutils.py
+ - `file2hash` 함수에서 경로를 해시 계산에 넣는 부분을 제거

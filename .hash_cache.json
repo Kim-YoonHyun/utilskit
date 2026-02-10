@@ -15,7 +15,7 @@
 		"dbutils/__init__.py": "dbd68dda98c188ef843027066221584e6f5fd48aa51becdc02ddfedf3ada38af",
 		"dbutils/dbutils.py": "637fff3600a99f2c5a940be1d4714f7a8b1a921192e58161e3b5ee20d1d08889",
 		"hashutils/__init__.py": "0f132362d5aae33775a6bcfc69b550a34a1dcefe34cc9aae487c92daba3a40ee",
-		"hashutils/hashutils.py": "14672c3c8e72f49d92bb8b6089b165c0bf77d27e1b8cddaf505f177ab48faedb",
+		"hashutils/hashutils.py": "cb309f143d00b49fb7994c187bb75fdecf7a9fb0a4be9c81df286a9b9868eb18",
 		"plotutils/__init__.py": "e3ab8bbb73e8f4f1ab86327c170ea4ae8ee413a314321608400d9a21dd5b68ee",
 		"plotutils/plotutils.py": "92dd318ed0b02957de44ab85fcb28fde240ae252ab7201079ee4023478c0c17c",
 		"repeatutils/__init__.py": "7aa3c0d1400cf65e731ccdd92940faf6aaebf4ad5ec51e930449e4cc1b03b584",
@@ -28,6 +28,7 @@
 		"versionutils/versionutils.py": "ee9e3f6fb3a1f2f76d6cf12ea05c20d0a39999b97521a65c6614752c838338f6"
 	},
 	"/home/kimyh/library/utilskit/.spec_grp": {
-		"manifest.json": "b6388bd4c523593ccd2eb4a63081c585ebceda13d85e36e63ac81073fad8e708"
+		"manifest.json": "cb817bec5df6f2b9e3d68e9aa738d7d11c665baea3f82592e6e16f899044186c",
+		".cruft.json": "43fa79cb29047b514b4554c42c3409332b074ba68ac0702304f0873de9e71229"
 	}
 }

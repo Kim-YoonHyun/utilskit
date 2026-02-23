@@ -2,13 +2,13 @@
 	"user_version": "1.1",
 	"product": {
 		"name": "utilskit",
-		"version": "1.1.6",
+		"version": "1.1.7",
 		"resolved": {
 			"docs": "0.0.2",
 			"docs_ver": "0.0.0",
 			"scripts": "1.1.5",
 			"utilskit": "1.0.3",
-			".spec_grp": "0.0.3",
+			".spec_grp": "0.0.4",
 			".integrity_grp": "0.0.0"
 		},
 		"hash": "18faf7516fe8f94b95bbbab592ca68b67b410f1f1cc9bd7399a706d63d8173a9",
@@ -91,7 +91,7 @@
 		},
 		{
 			"name": ".spec_grp",
-			"version": "0.0.3",
+			"version": "0.0.4",
 			"requires": {},
 			"type": "Manifest",
 			"build": true,
@@ -122,19 +122,19 @@
 			"path": "/home/kimyh/library/utilskit",
 			"include": [
 				".hash_cache.json",
-				"package.lock",
+				"product.lock",
 				"requirements.txt"
 			],
 			"bundle": [],
 			"exclude": [],
 			"untracked": [
 				".hash_cache.json",
-				"package.lock"
+				"product.lock"
 			]
 		}
 	],
 	"build": {
-		"version": "1.2.0",
-		"match": "1.1.4"
+		"version": "1.2.1",
+		"match": "1.1.6"
 	}
 }

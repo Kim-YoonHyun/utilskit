@@ -155,14 +155,14 @@
 			"path": "{product_path}/{name}",
 			"include": [
 				".hash_cache.json",
-				"package.lock",
+				"product.lock",
 				"requirements.txt"
 			],
 			"bundle": [],
 			"exclude": [],
 			"untracked":[
 				".hash_cache.json",
-				"package.lock"
+				"product.lock"
 			]
 		},
 		{

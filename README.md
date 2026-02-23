@@ -44,7 +44,14 @@ pip install utilskit
 | [combined2hash](https://github.com/Kim-YoonHyun/utilskit/blob/master/docs/combined2hash.md) | 특정 디렉토리의 대상 파일 리스트 각각에 대한 해시를 계산 |
 | [hashlist2hash](https://github.com/Kim-YoonHyun/utilskit/blob/master/docs/hashlist2hash.md) | 해시 리스트를 모아서 하나의 통합 해시를 계산             |
 
+## - versionutils
 
+| 함수명                                                       | 목적                                           |
+| ------------------------------------------------------------ | ---------------------------------------------- |
+| [version_up](https://github.com/Kim-YoonHyun/utilskit/blob/master/docs/version_up.md) | 대화형 인터페이스로 semantic versioning 수행   |
+| [get_git_modified](https://github.com/Kim-YoonHyun/utilskit/blob/master/docs/get_git_modified.md) | Git 저장소의 수정된 파일 목록 추출             |
+| [get_git_new](https://github.com/Kim-YoonHyun/utilskit/blob/master/docs/get_git_new.md) | Git 저장소의 추적되지 않는 새 파일 목록 추출   |
+| [git_addcommit](https://github.com/Kim-YoonHyun/utilskit/blob/master/docs/git_addcommit.md) | Git 저장소의 모든 변경사항을 스테이징 및 커밋  |
 
 ## - plotutils
 

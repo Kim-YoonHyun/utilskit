@@ -49,3 +49,11 @@
 **Detail:**<br>
 - Modified: /home/kimyh/library/utilskit/scripts/upload.py
  - toml encoding 을 utf-8-sig 에서 utf-8 로 변경
+
+
+
+## 2026-02-23 Version 1.1.4
+**Tag:** @Patch<br>
+**Summary:** new file<br>
+**Detail:**<br>
+- New: /home/kimyh/library/utilskit/scripts/get_hash_cache.py

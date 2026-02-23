@@ -1,17 +1,17 @@
 {
   "template": "https://github.com/Kim-YoonHyun/baseline_product",
-  "commit": "4bb24793cd92d43ab96dd0c90f042bb71cf4b0be",
+  "commit": "78be8f7b30d3fec7fad6a5255fc390f0c24a6644",
   "checkout": null,
   "context": {
     "cookiecutter": {
-      "package_name": "utilskit",
-      "version": "0.2.18.2",
+      "name": "이름 입력",
+      "type": "system",
       "description": "다양한 편의성 함수 모음 패키지",
       "python_ver": ">=3.11",
       "author_name": "kimyh",
       "email": "kim_yh663927@naver.com",
       "_template": "https://github.com/Kim-YoonHyun/baseline_product",
-      "_commit": "4bb24793cd92d43ab96dd0c90f042bb71cf4b0be"
+      "_commit": "78be8f7b30d3fec7fad6a5255fc390f0c24a6644"
     }
   },
   "directory": null

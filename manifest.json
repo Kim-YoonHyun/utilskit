@@ -4,6 +4,10 @@
 		"# [0.0.1] @done_log: untracked 키 추가",
 		"# [0.0.1] @done_log: build 키 추가"
 	],
+	"hash_schema":{
+		"version":"v2",
+		"logic":"utilskit>=1.2.0"
+	},
 	"common_exclude":[
 		"__pycache__",
 		"old",
@@ -11,6 +15,10 @@
 		"*.tmp",
         "*-info",
 		".gitkeep"
+	],
+	"common_untracked":[
+		"__version__.py",
+		"*_grp"
 	],
 	"component": [
 		{
@@ -20,7 +28,7 @@
 			"manage": false,
 			"build": false,
 			"mode": "dir",
-			"path": "{pack_path}/{name}",
+			"path": "{product_path}/{name}",
 			"include": [
 				"*"
 			],
@@ -35,7 +43,7 @@
 			"manage": false,
 			"build": false,
 			"mode": "dir",
-			"path": "{pack_path}/{name}",
+			"path": "{product_path}/{name}",
 			"include": [
 				"*"
 			],
@@ -50,7 +58,7 @@
 			"manage": true,
 			"build": true,
 			"mode": "dir",
-			"path": "{pack_path}/{name}",
+			"path": "{product_path}/{name}",
 			"include": [
 				"*"
 			],
@@ -65,7 +73,7 @@
 			"manage": true,
 			"build": false,
 			"mode": "dir",
-			"path": "{pack_path}/{name}",
+			"path": "{product_path}/{name}",
 			"include": ["*"],
 			"bundle": [],
 			"exclude": [],
@@ -78,7 +86,7 @@
 			"manage": true,
 			"build": false,
 			"mode": "dir",
-			"path": "{pack_path}/{name}",
+			"path": "{product_path}/{name}",
 			"include": [
 				"*"
 			],
@@ -93,7 +101,7 @@
 			"manage": true,
 			"build": true,
 			"mode": "dir",
-			"path": "{src_path}/{name}",
+			"path": "{product_path}/src/{name}",
 			"include": [
 				"*"
 			],
@@ -108,7 +116,7 @@
 			"manage": false,
 			"build": false,
 			"mode": "dir",
-			"path": "{src_path}/{name}",
+			"path": "{product_path}/src/{name}",
 			"include": [
 				"*"
 			],
@@ -123,7 +131,7 @@
 			"manage": true,
 			"build": true,
 			"mode": "file_group",
-			"path": "{pack_path}/{name}",
+			"path": "{product_path}/{name}",
 			"include": [
 				".cruft.json",
 				"manifest.json",
@@ -144,7 +152,7 @@
 			"manage": true,
 			"build": true,
 			"mode": "file_group",
-			"path": "{pack_path}/{name}",
+			"path": "{product_path}/{name}",
 			"include": [
 				".hash_cache.json",
 				"package.lock",
@@ -164,7 +172,7 @@
 			"manage": false,
 			"build": false,
 			"mode": "file_group",
-			"path": "{pack_path}/{name}",
+			"path": "{product_path}/{name}",
 			"include": [
 				".gitignore"
 			],

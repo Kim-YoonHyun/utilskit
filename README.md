@@ -97,7 +97,7 @@ pip install utilskit
 
 - README, docs 구조 변경
 
-### 1.0.5
+### 1.2.1
 
 - hashutils, versionutils 기능 추가
 

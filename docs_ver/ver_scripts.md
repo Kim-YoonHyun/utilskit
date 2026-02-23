@@ -57,3 +57,12 @@
 **Summary:** new file<br>
 **Detail:**<br>
 - New: /home/kimyh/library/utilskit/scripts/get_hash_cache.py
+
+
+
+## 2026-02-23 Version 1.1.5
+**Tag:** @Refactoring<br>
+**Summary:** 정합성 업데이트<br>
+**Detail:**<br>
+- Modified: /home/kimyh/library/utilskit/scripts/upload.py
+ - 새로운 baseline 에 맞춰 exitcode 를 확인하는 방식으로 변경

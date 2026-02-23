@@ -21,60 +21,56 @@ from utilskit.utils import path_change
 # [1.1.0] @done_log: lock 파일을 활용한 시스템 build 진행
 def main():
     scripts_path = Path(__file__).resolve().parent
-    pack_path = scripts_path.parent
-    lib_path = pack_path.parent
-    dist_path = pack_path / "dist"
+    product_path = scripts_path.parent
+    lib_path = product_path.parent
+    dist_path = product_path / "dist"
     dev_path = lib_path / "dev_tools"
 
     # lock 파일 불러오기
-    with open(pack_path / "package.lock", "r", encoding="utf-8-sig") as f:
+    with open(product_path / "product.lock", "r", encoding="utf-8-sig") as f:
         lock_info = json.load(f)
     
     # pyproject.toml 불러오기
-    with open(pack_path / "pyproject.toml", "r", encoding="utf-8-sig") as f:
+    with open(product_path / "pyproject.toml", "r", encoding="utf-8-sig") as f:
         contents = f.read()
         toml_info = tomlkit.parse(contents)
     
-    p_name = lock_info["package"]["name"]
+    p_name = lock_info["product"]["name"]
     c_info_list = lock_info["component"]
 
     # versioning 실행 여부 파악 = 해시 변동 있는지 파악
-    try:
-        print("현재 파일 해시 검증 중...")
-        cmd = ["python", "-m", "versioning", "--name", p_name]
-        subprocess.run(
-            cmd, 
-            cwd=dev_path, 
-            capture_output=True, 
-            text=True, 
-            timeout=3 
-        )
-    except subprocess.TimeoutExpired as e:
-        # 이 부분이 "무언가 계속 진행됨"을 감지하는 지점입니다.
-        print(e)
-        print("파일 해시에 변동이 있습니다. versioning 을 먼저 진행해야합니다.")
-        sys.exit()
+    # [1.1.5] @done_log: 새로운 baseline 에 맞춰 exitcode 를 확인하는 방식으로 변경
+    dev_path = product_path.parent / "dev_tools"
+    cmd = ["python", "-m", "versioning", "--check-only", "--name", p_name]
+    result = subprocess.run(
+        cmd, 
+        cwd=dev_path, 
+        capture_output=True, 
+        text=True
+    )
+    if result.returncode == 1:
+        raise TimeoutError("파일 해시에 변동이 있습니다. versioning 을 먼저 진행해야합니다.")
 
     # 빌드 버전 업 & 매칭
-    p_version = lock_info["package"]["version"]
+    p_version = lock_info["product"]["version"]
     pre_b_version = lock_info["build"]["version"]
     new_b_version, tag = version_up(p_name, pre_b_version)
     lock_info["build"]["version"] = new_b_version
     lock_info["build"]["match"] = p_version
-    with open(pack_path / "package.lock", "w", encoding="utf-8-sig") as f:
+    with open(product_path / "product.lock", "w", encoding="utf-8-sig") as f:
         json.dump(lock_info, f, indent="\t", ensure_ascii=False)
     # 아카이브 파일도 변환
-    with open(pack_path / "archive" / f"package_v{p_version}.lock", "w", encoding="utf-8-sig") as f:
+    with open(product_path / "archive" / f"product_v{p_version}.lock", "w", encoding="utf-8-sig") as f:
         json.dump(lock_info, f, indent="\t", ensure_ascii=False)
 
     # toml 버전 업
     # [1.1.3] @done_log: toml encoding 을 utf-8-sig 에서 utf-8 로 변경
     toml_info["project"]["version"] = new_b_version
-    with open(pack_path / "pyproject.toml", "w", encoding="utf-8") as f:
+    with open(product_path / "pyproject.toml", "w", encoding="utf-8") as f:
         f.write(toml_info.as_string())
     
     # 컴포넌트별 dist 로 옮김
-    common_exclude = lock_info["package"]["exclude"]
+    common_exclude = lock_info["product"]["exclude"]
     for c_info in c_info_list:
         c_name = c_info["name"]
         do_build = c_info["build"]
@@ -86,7 +82,7 @@ def main():
             continue
 
         if c_mode == "dir":
-            rel_path = Path(c_path).relative_to(pack_path)
+            rel_path = Path(c_path).relative_to(product_path)
             tgt_path = dist_path / rel_path
             # 기존 staging 폴더 삭제
             if os.path.exists(tgt_path):
@@ -124,7 +120,7 @@ def main():
     password = config['PyPI']['password']
 
     # subprocess 로 build 실행
-    # [1.1.1] @done_log: 작업 디렉토리를 pack_path 에서 dist_path 로 변경
+    # [1.1.1] @done_log: 작업 디렉토리를 product_path 에서 dist_path 로 변경
     subprocess.run(["python", "-m", "build"], cwd=dist_path)
 
     # subprocess 로 twine upload 실행

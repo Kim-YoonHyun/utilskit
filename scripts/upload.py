@@ -14,8 +14,8 @@ from pathlib import Path
 USER_PATH = Path("~").expanduser()
 sys.path.insert(0, str(USER_PATH / "library" / "utilskit" / "src"))
 sys.path.insert(0, str(USER_PATH / "library" / "logie" / "src"))
-from utilskit.versionutils import get_git_modified, get_git_new, version_up
-from utilskit.utils import path_change
+from utilskit.versionutils import get_git_modified, get_git_new, version_up, git_addcommit
+from utilskit.utils import get_now
 
 
 # [1.1.0] @done_log: lock 파일을 활용한 시스템 build 진행
@@ -112,6 +112,9 @@ def main():
                 # 새 파일 전송(manifest 제외)
                 shutil.copy2(src, tgt)
     
+    # [1.1.6] @done_log: 끝나고 전체 git commit 부분 추가
+    git_addcommit(product_path, f'*{tag}: {get_now("년-월-일 시:분:초")} ver {new_b_version} building')
+
     # token.ini 읽기
     config = configparser.ConfigParser()
     config.read(os.path.join(lib_path, "token.ini"))

@@ -23,3 +23,11 @@
 **Summary:** manifest update<br>
 **Detail:**<br>
 -       .spec_grp version (0.0.3) --> (0.0.4)
+
+
+
+## 2026-02-23 Version 1.1.8
+**Tag:** @Patch<br>
+**Summary:** components update<br>
+**Detail:**<br>
+-         scripts version (1.1.5) --> (1.1.6)

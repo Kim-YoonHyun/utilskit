@@ -15,7 +15,7 @@ USER_PATH = Path("~").expanduser()
 sys.path.insert(0, str(USER_PATH / "library" / "utilskit" / "src"))
 sys.path.insert(0, str(USER_PATH / "library" / "logie" / "src"))
 from utilskit.versionutils import get_git_modified, get_git_new, version_up, git_addcommit
-from utilskit.utils import get_now
+from utilskit.timeutils import get_now
 
 
 # [1.1.0] @done_log: lock 파일을 활용한 시스템 build 진행

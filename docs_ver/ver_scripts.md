@@ -75,3 +75,11 @@
 **Detail:**<br>
 - Modified: /home/kimyh/library/utilskit/scripts/upload.py
  - 끝나고 전체 git commit 부분 추가
+
+
+
+## 2026-02-23 Version 1.1.7
+**Tag:** @Patch<br>
+**Summary:** import 에러 수정<br>
+**Detail:**<br>
+- Modified: /home/kimyh/library/utilskit/scripts/upload.py

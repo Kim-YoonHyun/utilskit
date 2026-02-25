@@ -111,7 +111,7 @@ def get_git_modified(repo_path, search_path):
     return result_list
     
 
-# [1.0.0] @done_log: 함수 `get_git_new` 추가
+# [1.0.4] @done_log: `get_git_new` 함수 첫번째 인자 repo_path 를 입력할때 Pathlib 변수로 넣지 않으면 에러가 나는 현상 수정
 def get_git_new(repo_path, search_path):
     # 깃 정보 추출
     repo = Repo(repo_path)
@@ -123,7 +123,7 @@ def get_git_new(repo_path, search_path):
     untrack_list = repo.untracked_files
     for unt_path in untrack_list:
         # 대상 파일 정보 추가
-        file_path = str(repo_path / unt_path)
+        file_path = str(Path(repo_path) / unt_path)
         if search_path in file_path:
             result_list.append({"file_path": file_path, "status": "New"})
     return result_list

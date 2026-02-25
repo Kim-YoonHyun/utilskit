@@ -3,22 +3,18 @@ import sys
 import json
 import shutil
 import tomlkit
-import argparse
 import subprocess
 import configparser
 from pathlib import Path
 
 
-# [1.1.1] @done_log: 파일 검증 후 버전을 수정하고 업로드까지의 내용을 전부 진행
-# [1.0.0] @done_log: 필요한 함수 자체를 강제 주입
 USER_PATH = Path("~").expanduser()
 sys.path.insert(0, str(USER_PATH / "library" / "utilskit" / "src"))
 sys.path.insert(0, str(USER_PATH / "library" / "logie" / "src"))
-from utilskit.versionutils import get_git_modified, get_git_new, version_up, git_addcommit
+from utilskit.versionutils import version_up, git_addcommit
 from utilskit.timeutils import get_now
 
 
-# [1.1.0] @done_log: lock 파일을 활용한 시스템 build 진행
 def main():
     scripts_path = Path(__file__).resolve().parent
     product_path = scripts_path.parent
@@ -39,7 +35,6 @@ def main():
     c_info_list = lock_info["component"]
 
     # versioning 실행 여부 파악 = 해시 변동 있는지 파악
-    # [1.1.5] @done_log: 새로운 baseline 에 맞춰 exitcode 를 확인하는 방식으로 변경
     dev_path = product_path.parent / "dev_tools"
     cmd = ["python", "-m", "versioning", "--check-only", "--name", p_name]
     result = subprocess.run(

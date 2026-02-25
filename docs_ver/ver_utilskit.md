@@ -180,3 +180,12 @@ New: scripts/sync_dependencies.sh
 **Detail:**<br>
 - Modified: /home/kimyh/library/utilskit/src/utilskit/hashutils/hashutils.py
  - `file2hash` 함수에서 경로를 해시 계산에 넣는 부분을 제거
+
+
+
+## 2026-02-25 Version 1.0.4
+**Tag:** @Patch<br>
+**Summary:** 오류 수정<br>
+**Detail:**<br>
+- Modified: /home/kimyh/library/utilskit/src/utilskit/versionutils/versionutils.py
+ - `get_git_new` 함수 첫번째 인자 repo_path 를 입력할때 Pathlib 변수로 넣지 않으면 에러가 나는 현상 수정

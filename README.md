@@ -97,6 +97,10 @@ pip install utilskit
 
 - README, docs 구조 변경
 
+### 1.2.4
+
+- versionutils `get_git_new` 함수 사용시 첫 번째 경로 인자값을 Pathlib 변수로 넣지 않으면 에러가 나는 현상 수정
+
 ### 1.2.3
 
 - 내부 오류 수정

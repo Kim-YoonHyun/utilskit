@@ -83,3 +83,11 @@
 **Summary:** import 에러 수정<br>
 **Detail:**<br>
 - Modified: /home/kimyh/library/utilskit/scripts/upload.py
+
+
+
+## 2026-02-25 Version 1.1.8
+**Tag:** @Refactoring<br>
+**Summary:** 내부 논리 리펙토링<br>
+**Detail:**<br>
+- Modified: /home/kimyh/library/utilskit/scripts/upload.py

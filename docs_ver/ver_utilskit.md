@@ -189,3 +189,12 @@ New: scripts/sync_dependencies.sh
 **Detail:**<br>
 - Modified: /home/kimyh/library/utilskit/src/utilskit/versionutils/versionutils.py
  - `get_git_new` 함수 첫번째 인자 repo_path 를 입력할때 Pathlib 변수로 넣지 않으면 에러가 나는 현상 수정
+
+
+
+## 2026-03-05 Version 1.0.5
+**Tag:** @Patch<br>
+**Summary:** 의존성 라이브러리 pandas 와 연상 방식 간의 호환성 수정<br>
+**Detail:**<br>
+- Modified: /home/kimyh/library/utilskit/src/utilskit/dataframeutils/dataframeutils.py
+ - pandas 최신 버전에 맞추어 ffill 문법 변경

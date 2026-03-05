@@ -83,6 +83,19 @@ pip install utilskit
 | [get_error_info](https://github.com/Kim-YoonHyun/utilskit/blob/master/docs/get_error_info.md) | 에러 발생시의 메시지 객체화 |
 
 # Version
+
+## 2026-02-25 1.2.4
+
+- versionutils `get_git_new` 함수 사용시 첫 번째 경로 인자값을 Pathlib 변수로 넣지 않으면 에러가 나는 현상 수정
+
+## 1.2.3
+
+- 내부 오류 수정
+
+## 1.2.2
+
+- hashutils, versionutils 기능 추가
+
 ## 2026-02-02 ver 1.1.0
 
 - hashutils, versionutils 추가
@@ -96,18 +109,6 @@ pip install utilskit
 최적화
 
 - README, docs 구조 변경
-
-### 1.2.4
-
-- versionutils `get_git_new` 함수 사용시 첫 번째 경로 인자값을 Pathlib 변수로 넣지 않으면 에러가 나는 현상 수정
-
-### 1.2.3
-
-- 내부 오류 수정
-
-### 1.2.2
-
-- hashutils, versionutils 기능 추가
 
 ### 0.2.18.1
 

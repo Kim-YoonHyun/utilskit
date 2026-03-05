@@ -2,14 +2,14 @@
 	"user_version": "1.1",
 	"product": {
 		"name": "utilskit",
-		"version": "1.1.10",
+		"version": "1.1.11",
 		"resolved": {
 			"docs": "0.0.2",
 			"docs_ver": "0.0.0",
 			"scripts": "1.1.8",
-			"utilskit": "1.0.4",
+			"utilskit": "1.0.5",
 			".spec_grp": "0.0.4",
-			".integrity_grp": "0.0.0"
+			".integrity_grp": "0.0.1"
 		},
 		"hash": "18faf7516fe8f94b95bbbab592ca68b67b410f1f1cc9bd7399a706d63d8173a9",
 		"hash_schema_version": "v2",
@@ -75,7 +75,7 @@
 		},
 		{
 			"name": "utilskit",
-			"version": "1.0.4",
+			"version": "1.0.5",
 			"requires": {},
 			"type": "Module",
 			"build": true,
@@ -113,7 +113,7 @@
 		},
 		{
 			"name": ".integrity_grp",
-			"version": "0.0.0",
+			"version": "0.0.1",
 			"requires": {},
 			"type": "Manifest",
 			"build": true,

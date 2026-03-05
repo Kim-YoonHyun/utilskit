@@ -48,3 +48,12 @@
 **Detail:**<br>
 -         scripts version (1.1.7) --> (1.1.8)
 -        utilskit version (1.0.3) --> (1.0.4)
+
+
+
+## 2026-03-05 Version 1.1.11
+**Tag:** @Patch<br>
+**Summary:** module update<br>
+**Detail:**<br>
+-        utilskit version (1.0.4) --> (1.0.5)
+-  .integrity_grp version (0.0.0) --> (0.0.1)

@@ -161,8 +161,11 @@ def fill_repeat_nan(dataframe, column, repeat=5):
         # nan_start_idx_list = section[:, :1].tolist()
         # nan_end_idx_list = section[:, 1:].tolist()
         for (nan_si, nan_ei) in section:#zip(nan_start_idx_list, nan_end_idx_list):
-            df.loc[nan_si-1:nan_ei, column] = df.loc[nan_si-1:nan_ei, column].fillna(method='ffill')
-            df.loc[nan_si:nan_ei+1, column] = df.loc[nan_si:nan_ei+1, column].fillna(method='bfill')
+            # [1.0.5] @done_log: pandas 최신 버전에 맞추어 ffill 문법 변경
+            # df.loc[nan_si-1:nan_ei, column] = df.loc[nan_si-1:nan_ei, column].fillna(method='ffill')
+            df.loc[nan_si-1:nan_ei, column] = df.loc[nan_si-1:nan_ei, column].ffill()
+            # df.loc[nan_si:nan_ei+1, column] = df.loc[nan_si:nan_ei+1, column].fillna(method='bfill')
+            df.loc[nan_si:nan_ei+1, column] = df.loc[nan_si:nan_ei+1, column].bfill()
     
     return df
 

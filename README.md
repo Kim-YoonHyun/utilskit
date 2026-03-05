@@ -84,6 +84,10 @@ pip install utilskit
 
 # Version
 
+## 2026-03-05 1.2.5
+
+- dataframeutils `fill_repeate_nan` 함수 사용시 pandas 버전 차이로 인한 연산 에러 수정
+
 ## 2026-02-25 1.2.4
 
 - versionutils `get_git_new` 함수 사용시 첫 번째 경로 인자값을 Pathlib 변수로 넣지 않으면 에러가 나는 현상 수정
